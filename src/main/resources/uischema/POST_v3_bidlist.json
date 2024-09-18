@@ -1,0 +1,108 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "POST_v3_bidlist",
+    "title": "POST V 3 Bidlist",
+    "help": "Create a bid list, returning the created bid list.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                                                                                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Request Body",
+                            "elements":[
+                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "bidLines",
+                                            "displayName": "Bid Lines",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The list of BidLines that will be used along with the ResolutionType to calculate the adjustment for this BidList. Type: array"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "resolutionType",
+                                            "displayName": "Resolution Type",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "The ResolutionType determines how BidAdjustments are handled when an impression matches multiple BidLines. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "bidListAdjustmentType",
+                                            "displayName": "Bid List Adjustment Type",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "Defines how bid adjustments are applied (e.g., BlockList, TargetList, Optimized). Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "bidListOwner",
+                                            "displayName": "Bid List Owner",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "The type of owner that controls this bid list (e.g., AdGroup, Campaign, Advertiser). Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "name",
+                                            "displayName": "Name",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "A name for the bid list. Type: string"
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                    ]
+            }
+        }
+    ]
+}

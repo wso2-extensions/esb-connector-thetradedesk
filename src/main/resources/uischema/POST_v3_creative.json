@@ -1,0 +1,108 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "POST_v3_creative",
+    "title": "POST V 3 Creative",
+    "help": "Create a new creative under an advertiser.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                                                                                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Request Body",
+                            "elements":[
+                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "advertiserId",
+                                            "displayName": "Advertiser Id",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The platform ID of the advertiser that owns this creative. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "creativeName",
+                                            "displayName": "Creative Name",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The name of the creative. The value must not contain special characters like <>;^\\r\\n. Max length is 256. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "availability",
+                                            "displayName": "Availability",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Indicates if the Creative is 'Available' for use or 'Archived'. 'Archived' creatives are hidden and associations removed. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "description",
+                                            "displayName": "Description",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "An optional description of the creative. Max length is 512. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "clickthroughUrl",
+                                            "displayName": "Clickthrough Url",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The URL to invoke when the user clicks the ad. This may include click tracking. Max length is 5000. Type: string"
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                    ]
+            }
+        }
+    ]
+}

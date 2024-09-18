@@ -1,0 +1,148 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "POST_v3_universalforecasting_generate",
+    "title": "POST V 3 Universalforecasting Generate",
+    "help": "Generate a forecast based on the data available at the time of the request.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                                                                                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Request Body",
+                            "elements":[
+                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "advertiserId",
+                                            "displayName": "Advertiser Id",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The platform ID of the advertiser requesting the forecast. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "audienceId",
+                                            "displayName": "Audience Id",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "The ID for the audience to be used in the forecast. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "averageBidCPMInAdvertiserCurrency",
+                                            "displayName": "Average Bid CPM In Advertiser Currency",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "The average bid in the advertiser's currency to be used for the forecast. Type: number"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "demographic",
+                                            "displayName": "Demographic",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": " Type: object"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "existingBidLists",
+                                            "displayName": "Existing Bid Lists",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Existing bid lists to be applied to the forecast. Type: array"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "forecastingAudiences",
+                                            "displayName": "Forecasting Audiences",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": " Type: array"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "generateBudgetPoints",
+                                            "displayName": "Generate Budget Points",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "Set to true to generate budget points for impressions and reach. Type: boolean"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "timeWindow",
+                                            "displayName": "Time Window",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "The number of days (1 to 180) for the forecast. Type: integer"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "universalForecastingBidLists",
+                                            "displayName": "Universal Forecasting Bid Lists",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "New bid lists to be applied to the forecast. Type: array"
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                    ]
+            }
+        }
+    ]
+}

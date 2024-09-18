@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2022, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+  ~
+  ~ This software is the property of WSO2 LLC. and its suppliers, if any.
+  ~ Dissemination of any information or reproduction of any material contained
+  ~ herein is strictly forbidden, unless permitted by WSO2 in accordance with
+  ~ the WSO2 Software License available at: https://wso2.com/licenses/eula/3.2
+  ~ For specific language governing the permissions and limitations under
+  ~ this license, please see the license as well as any agreement you’ve
+  ~ entered into with WSO2 governing the purchase of this software and any
+  ~ associated services.
+  -->
+
+<!-- Generated on 18-Wed, 09, 2024 21:27:07+0530 -->
+
+<template xmlns="http://ws.apache.org/ns/synapse" name="POST_v3_campaign">
+                            <!-- Request Body Parameter List -->
+                    <parameter name="advertiserId"  description="The platform ID of the advertiser that owns this campaign. Type: string" />
+                    <parameter name="campaignName"  description="The name of the campaign. Type: string" />
+                    <parameter name="budget"  description=" Type: object" />
+                    <parameter name="startDate"  description="The start date and time in UTC when the campaign should begin spending. Type: string" />
+                    <parameter name="endDate"  description="The end date and time in UTC when the campaign should stop spending. Type: string" />
+                    <parameter name="primaryGoal"  description=" Type: object" />
+                    <parameter name="trackingTags"  description="List of tracking tags associated with the campaign. Type: array" />
+                    <sequence>
+        <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
+            <property name="operationPath" value="/v3/campaign"/>
+                                </class>
+                                                        <payloadFactory media-type="json" template-type="freemarker">
+                        <format>
+                            <![CDATA[{
+                                                                                        <#if (args.arg1)?has_content>
+                                    "AdvertiserId": "${args.arg1}",                                </#if>
+                                                                                            <#if (args.arg2)?has_content>
+                                    "CampaignName": "${args.arg2}",                                </#if>
+                                                                                            <#if (args.arg3)?has_content>
+                                    "Budget": "${args.arg3}",                                </#if>
+                                                                                            <#if (args.arg4)?has_content>
+                                    "StartDate": "${args.arg4}",                                </#if>
+                                                                                            <#if (args.arg5)?has_content>
+                                    "EndDate": "${args.arg5}",                                </#if>
+                                                                                            <#if (args.arg6)?has_content>
+                                    "PrimaryGoal": "${args.arg6}",                                </#if>
+                                                                                            <#if (args.arg7)?has_content>
+                                    "TrackingTags": "${args.arg7}"                                </#if>
+                                                                                        }]]>
+                        </format>
+                        <args>
+                                                            <arg evaluator="xml" expression="$func:advertiserId"/>
+                                                            <arg evaluator="xml" expression="$func:campaignName"/>
+                                                            <arg evaluator="xml" expression="$func:budget"/>
+                                                            <arg evaluator="xml" expression="$func:startDate"/>
+                                                            <arg evaluator="xml" expression="$func:endDate"/>
+                                                            <arg evaluator="xml" expression="$func:primaryGoal"/>
+                                                            <arg evaluator="xml" expression="$func:trackingTags"/>
+                                                    </args>
+                    </payloadFactory>
+                                <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+                        <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/>
+                            <header name="Accept" value="application/json" scope="transport" action="set"/>
+                                <call>
+            <endpoint>
+                <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+            </endpoint>
+        </call>
+        <class name="org.wso2.healthcare.integration.common.ehr.ResponseProcessingHandler"/>
+    </sequence>
+</template>

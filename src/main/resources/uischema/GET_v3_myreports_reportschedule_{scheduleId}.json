@@ -1,0 +1,68 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "GET_v3_myreports_reportschedule_{scheduleId}",
+    "title": "GET V 3 Myreports Reportschedule { Schedule Id }",
+    "help": "Retrieve details of a report schedule by its ID.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                        ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Parameters",
+                            "elements":[
+                                                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "scheduleId",
+                                            "displayName": "Schedule Id",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The ID of the report schedule to retrieve."
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                                                                                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,78 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "POST_v3_frequency_config",
+    "title": "POST V 3 Frequency Config",
+    "help": "Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                                                                                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Request Body",
+                            "elements":[
+                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "bidLists",
+                                            "displayName": "Bid Lists",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Bid lists apply frequency settings to ad groups, campaigns, and other entities. Type: array"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "counter",
+                                            "displayName": "Counter",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Defines the frequency counter framework for tracking the number of times an ad is served. Type: object"
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                    ]
+            }
+        }
+    ]
+}

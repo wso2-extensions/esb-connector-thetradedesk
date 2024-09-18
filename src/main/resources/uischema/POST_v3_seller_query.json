@@ -1,0 +1,118 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "POST_v3_seller_query",
+    "title": "POST V 3 Seller Query",
+    "help": "Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                                                                                    ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Request Body",
+                            "elements":[
+                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "pageSize",
+                                            "displayName": "Page Size",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100. Type: integer"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "pageStartIndex",
+                                            "displayName": "Page Start Index",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The zero-based index at which to start the page of results. Type: integer"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "includedSellerDomains",
+                                            "displayName": "Included Seller Domains",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Filter to a seller whose SellerDomain matches the value passed for this property. Type: array"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "sellerNameFilters",
+                                            "displayName": "Seller Name Filters",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Filter to a seller whose SellerName contains the value passed for this property. Type: array"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "sellerStatusFilter",
+                                            "displayName": "Seller Status Filter",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "sortFields",
+                                            "displayName": "Sort Fields",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Optionally, specify fields to sort the results by. Type: array"
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                    ]
+            }
+        }
+    ]
+}

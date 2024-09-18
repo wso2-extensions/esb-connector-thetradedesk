@@ -1,0 +1,17 @@
+{
+    "connectors": [
+        {
+            "connectorName": "TheTradeDesk",
+            "auth": "none",
+            "openapiSpecificationPath": [
+                "./TheTradeDeskAPI.json"
+            ],
+            "project": {
+                "groupId": "org.wso2.carbon.esb.connector",
+                "artifactId": "thetradedesk",
+                "version": "1.0.0-SNAPSHOT"
+            },
+            "iconFolderPath": ""
+        }
+    ]
+}

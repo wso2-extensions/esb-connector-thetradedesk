@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2022, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+  ~
+  ~ This software is the property of WSO2 LLC. and its suppliers, if any.
+  ~ Dissemination of any information or reproduction of any material contained
+  ~ herein is strictly forbidden, unless permitted by WSO2 in accordance with
+  ~ the WSO2 Software License available at: https://wso2.com/licenses/eula/3.2
+  ~ For specific language governing the permissions and limitations under
+  ~ this license, please see the license as well as any agreement you’ve
+  ~ entered into with WSO2 governing the purchase of this software and any
+  ~ associated services.
+  -->
+
+<!-- Generated on 18-Wed, 09, 2024 21:27:07+0530 -->
+
+<component name="functions" type="synapse/template">
+    <subComponents>
+                <component name="GET_v3_advertiser_{advertiserId}">
+            <file>GET_v3_advertiser_{advertiserId}.xml</file>
+            <description>Get details of an existing advertiser using the advertiser&apos;s platform ID.</description>
+        </component>
+                <component name="GET_v3_campaign_{campaignId}_metrics">
+            <file>GET_v3_campaign_{campaignId}_metrics.xml</file>
+            <description>Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.</description>
+        </component>
+                <component name="GET_v3_myreports_reportschedule_{scheduleId}">
+            <file>GET_v3_myreports_reportschedule_{scheduleId}.xml</file>
+            <description>Retrieve details of a report schedule by its ID.</description>
+        </component>
+                <component name="GET_v3_overview_advertiser_{advertiserId}">
+            <file>GET_v3_overview_advertiser_{advertiserId}.xml</file>
+            <description>Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.</description>
+        </component>
+                <component name="GET_v3_trackingtag_{trackingTagId}">
+            <file>GET_v3_trackingtag_{trackingTagId}.xml</file>
+            <description>Retrieve a tracking tag by its ID.</description>
+        </component>
+                <component name="POST_v3_adgroup">
+            <file>POST_v3_adgroup.xml</file>
+            <description>This endpoint allows you to create a new Ad Group within a campaign.</description>
+        </component>
+                <component name="POST_v3_advertiser">
+            <file>POST_v3_advertiser.xml</file>
+            <description>Create a new advertiser entity with the necessary details for attribution and domain address.</description>
+        </component>
+                <component name="POST_v3_bidlist">
+            <file>POST_v3_bidlist.xml</file>
+            <description>Create a bid list, returning the created bid list.</description>
+        </component>
+                <component name="POST_v3_campaign">
+            <file>POST_v3_campaign.xml</file>
+            <description>Create a new campaign entity with the necessary details such as name, budget, and start date.</description>
+        </component>
+                <component name="POST_v3_creative">
+            <file>POST_v3_creative.xml</file>
+            <description>Create a new creative under an advertiser.</description>
+        </component>
+                <component name="POST_v3_dmp_firstparty_advertiser">
+            <file>POST_v3_dmp_firstparty_advertiser.xml</file>
+            <description>Retrieve the First Party Data matching the provided query for an advertiser.</description>
+        </component>
+                <component name="POST_v3_frequency_config">
+            <file>POST_v3_frequency_config.xml</file>
+            <description>Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.</description>
+        </component>
+                <component name="POST_v3_iptargetinglist">
+            <file>POST_v3_iptargetinglist.xml</file>
+            <description>Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists.</description>
+        </component>
+                <component name="POST_v3_seller_query">
+            <file>POST_v3_seller_query.xml</file>
+            <description>Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.</description>
+        </component>
+                <component name="POST_v3_universalforecasting_generate">
+            <file>POST_v3_universalforecasting_generate.xml</file>
+            <description>Generate a forecast based on the data available at the time of the request.</description>
+        </component>
+            </subComponents>
+</component>

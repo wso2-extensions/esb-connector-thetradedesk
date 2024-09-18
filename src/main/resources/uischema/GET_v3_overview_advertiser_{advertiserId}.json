@@ -1,0 +1,68 @@
+{
+    "connectorName": "theTradeDesk",
+    "operationName": "GET_v3_overview_advertiser_{advertiserId}",
+    "title": "GET V 3 Overview Advertiser { Advertiser Id }",
+    "help": "Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.",
+    "elements": [
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attribute",
+                        "value": {
+                          "name": "configRef",
+                          "displayName": "Connection",
+                          "inputType": "connection",
+                          "allowedConnectionTypes": [
+                            "theTradeDesk"
+                          ],
+                          "defaultType": "connection.theTradeDesk",
+                          "defaultValue": "",
+                          "required": "true",
+                          "helpTip": "Connection to be used"
+                        }
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Search",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "search",
+                                        "displayName": "Search",
+                                        "inputType": "searchBox",
+                                        "defaultValue": "",
+                                        "required": "false",
+                                        "helpTip": "Search for an attribute using the display name"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                                        ,{
+                        "type":"attributeGroup",
+                        "value":{
+                            "groupName": "Parameters",
+                            "elements":[
+                                                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "advertiserId",
+                                            "displayName": "Advertiser Id",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The platform ID of the advertiser."
+                                        }
+                                    }                                                            ]
+                        }
+                    }
+                                                                                                ]
+            }
+        }
+    ]
+}
