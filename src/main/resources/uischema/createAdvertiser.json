@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_seller_query",
-    "title": "POST V 3 Seller Query",
-    "help": "Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.",
+    "operationName": "createAdvertiser",
+    "title": "Create Advertiser",
+    "help": "Create a new advertiser entity with the necessary details for attribution and domain address.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,62 +51,82 @@
                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "pageSize",
-                                            "displayName": "Page Size",
+                                            "name": "advertiserName",
+                                            "displayName": "Advertiser Name",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100. Type: integer"
+                                            "helpTip": "The name of the advertiser. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "pageStartIndex",
-                                            "displayName": "Page Start Index",
+                                            "name": "attributionClickLookbackWindowInSeconds",
+                                            "displayName": "Attribution Click Lookback Window In Seconds",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The zero-based index at which to start the page of results. Type: integer"
+                                            "helpTip": "Time window for click attribution in seconds. Type: integer"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "includedSellerDomains",
-                                            "displayName": "Included Seller Domains",
+                                            "name": "attributionImpressionLookbackWindowInSeconds",
+                                            "displayName": "Attribution Impression Lookback Window In Seconds",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Filter to a seller whose SellerDomain matches the value passed for this property. Type: array"
+                                            "required": "true",
+                                            "helpTip": "Time window for impression attribution in seconds. Type: integer"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "sellerNameFilters",
-                                            "displayName": "Seller Name Filters",
+                                            "name": "clickDedupWindowInSeconds",
+                                            "displayName": "Click Dedup Window In Seconds",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Filter to a seller whose SellerName contains the value passed for this property. Type: array"
+                                            "required": "true",
+                                            "helpTip": "Window for de-duplicating similar clicks. Type: integer"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "sellerStatusFilter",
-                                            "displayName": "Seller Status Filter",
+                                            "name": "conversionDedupWindowInSeconds",
+                                            "displayName": "Conversion Dedup Window In Seconds",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string"
+                                            "required": "true",
+                                            "helpTip": "Window for de-duplicating similar conversions. Type: integer"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "sortFields",
-                                            "displayName": "Sort Fields",
+                                            "name": "defaultRightMediaOfferTypeId",
+                                            "displayName": "Default Right Media Offer Type Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Optionally, specify fields to sort the results by. Type: array"
+                                            "required": "true",
+                                            "helpTip": "Default Right Media Offer Type ID. Type: integer"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "domainAddress",
+                                            "displayName": "Domain Address",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The domain address for the advertiser. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "partnerId",
+                                            "displayName": "Partner Id",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The ID of the partner who owns this advertiser. Type: string"
                                         }
                                     }                                                            ]
                         }

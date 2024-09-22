@@ -12,23 +12,24 @@
   ~ associated services.
   -->
 
-<!-- Generated on 18-Wed, 09, 2024 21:27:07+0530 -->
+<!-- Generated on 22-Sun, 09, 2024 21:58:29+0530 -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="POST_v3_adgroup">
-                            <!-- Request Body Parameter List -->
-                    <parameter name="adGroupName"  description="The name of the Ad Group. Type: string" />
-                    <parameter name="campaignId"  description="The ID of the Campaign that owns this Ad Group. Type: string" />
-                    <parameter name="budgetSettings"  description="Settings for how much and how fast the Ad Group may spend. Type: object" />
-                    <parameter name="pacingMode"  description="The pacing mode for the Ad Group. Type: string" />
-                    <parameter name="isEnabled"  description="Whether the Ad Group is enabled to spend. Type: boolean" />
-                    <parameter name="creativeIds"  description="A list of Creative IDs associated with this Ad Group. Type: array" />
-                    <sequence>
+<template xmlns="http://ws.apache.org/ns/synapse" name="createAdGroup">
+    <!-- Request Body Parameter List -->
+    <parameter name="adGroupName" description="The name of the Ad Group. Type: string"/>
+    <parameter name="campaignId" description="The ID of the Campaign that owns this Ad Group. Type: string"/>
+    <parameter name="budgetSettings"
+               description="Settings for how much and how fast the Ad Group may spend. Type: object"/>
+    <parameter name="pacingMode" description="The pacing mode for the Ad Group. Type: string"/>
+    <parameter name="isEnabled" description="Whether the Ad Group is enabled to spend. Type: boolean"/>
+    <parameter name="creativeIds" description="A list of Creative IDs associated with this Ad Group. Type: array"/>
+    <sequence>
         <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
             <property name="operationPath" value="/v3/adgroup"/>
-                                </class>
-                                                        <payloadFactory media-type="json" template-type="freemarker">
-                        <format>
-                            <![CDATA[{
+        </class>
+        <payloadFactory media-type="json" template-type="freemarker">
+            <format>
+                <![CDATA[{
                                                                                         <#if (args.arg1)?has_content>
                                     "AdGroupName": "${args.arg1}",                                </#if>
                                                                                             <#if (args.arg2)?has_content>
@@ -42,21 +43,21 @@
                                                                                             <#if (args.arg6)?has_content>
                                     "CreativeIds": "${args.arg6}"                                </#if>
                                                                                         }]]>
-                        </format>
-                        <args>
-                                                            <arg evaluator="xml" expression="$func:adGroupName"/>
-                                                            <arg evaluator="xml" expression="$func:campaignId"/>
-                                                            <arg evaluator="xml" expression="$func:budgetSettings"/>
-                                                            <arg evaluator="xml" expression="$func:pacingMode"/>
-                                                            <arg evaluator="xml" expression="$func:isEnabled"/>
-                                                            <arg evaluator="xml" expression="$func:creativeIds"/>
-                                                    </args>
-                    </payloadFactory>
-                                <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-                        <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/>
-                            <header name="Accept" value="application/json" scope="transport" action="set"/>
-                                <call>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:adGroupName"/>
+                <arg evaluator="xml" expression="$func:campaignId"/>
+                <arg evaluator="xml" expression="$func:budgetSettings"/>
+                <arg evaluator="xml" expression="$func:pacingMode"/>
+                <arg evaluator="xml" expression="$func:isEnabled"/>
+                <arg evaluator="xml" expression="$func:creativeIds"/>
+            </args>
+        </payloadFactory>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <call>
             <endpoint>
                 <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>

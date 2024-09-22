@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "GET_v3_trackingtag_{trackingTagId}",
-    "title": "GET V 3 Trackingtag { Tracking Tag Id }",
-    "help": "Retrieve a tracking tag by its ID.",
+    "operationName": "getReportScheduleById",
+    "title": "Get Report Schedule By Id",
+    "help": "Retrieve details of a report schedule by its ID.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,12 +51,12 @@
                                                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "trackingTagId",
-                                            "displayName": "Tracking Tag Id",
+                                            "name": "scheduleId",
+                                            "displayName": "Schedule Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The ID of the tracking tag to retrieve."
+                                            "helpTip": "The ID of the report schedule to retrieve."
                                         }
                                     }                                                            ]
                         }

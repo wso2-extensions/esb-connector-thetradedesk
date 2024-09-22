@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_creative",
-    "title": "POST V 3 Creative",
-    "help": "Create a new creative under an advertiser.",
+    "operationName": "querySellers",
+    "title": "Query Sellers",
+    "help": "Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,52 +51,62 @@
                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "advertiserId",
-                                            "displayName": "Advertiser Id",
+                                            "name": "pageSize",
+                                            "displayName": "Page Size",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The platform ID of the advertiser that owns this creative. Type: string"
+                                            "helpTip": "The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100. Type: integer"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "creativeName",
-                                            "displayName": "Creative Name",
+                                            "name": "pageStartIndex",
+                                            "displayName": "Page Start Index",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The name of the creative. The value must not contain special characters like <>;^\\r\\n. Max length is 256. Type: string"
+                                            "helpTip": "The zero-based index at which to start the page of results. Type: integer"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "availability",
-                                            "displayName": "Availability",
+                                            "name": "includedSellerDomains",
+                                            "displayName": "Included Seller Domains",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "false",
-                                            "helpTip": "Indicates if the Creative is 'Available' for use or 'Archived'. 'Archived' creatives are hidden and associations removed. Type: string"
+                                            "helpTip": "Filter to a seller whose SellerDomain matches the value passed for this property. Type: array"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "description",
-                                            "displayName": "Description",
+                                            "name": "sellerNameFilters",
+                                            "displayName": "Seller Name Filters",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "false",
-                                            "helpTip": "An optional description of the creative. Max length is 512. Type: string"
+                                            "helpTip": "Filter to a seller whose SellerName contains the value passed for this property. Type: array"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "clickthroughUrl",
-                                            "displayName": "Clickthrough Url",
+                                            "name": "sellerStatusFilter",
+                                            "displayName": "Seller Status Filter",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "The URL to invoke when the user clicks the ad. This may include click tracking. Max length is 5000. Type: string"
+                                            "required": "false",
+                                            "helpTip": "Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "sortFields",
+                                            "displayName": "Sort Fields",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "Optionally, specify fields to sort the results by. Type: array"
                                         }
                                     }                                                            ]
                         }

@@ -1,7 +1,7 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_dmp_firstparty_advertiser",
-    "title": "POST V 3 Dmp Firstparty Advertiser",
+    "operationName": "getFirstPartyDataForAdvertisers",
+    "title": "Get First Party Data For Advertisers",
     "help": "Retrieve the First Party Data matching the provided query for an advertiser.",
     "elements": [
         {

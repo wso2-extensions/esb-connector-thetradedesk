@@ -12,28 +12,28 @@
   ~ associated services.
   -->
 
-<!-- Generated on 18-Wed, 09, 2024 21:27:07+0530 -->
+<!-- Generated on 22-Sun, 09, 2024 21:58:29+0530 -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="POST_v3_dmp_firstparty_advertiser">
-                            <!-- Request Body Parameter List -->
-                    <parameter name="advertiserId"  description="The platform ID of the advertiser making the query. Type: string" />
-                    <parameter name="pageSize"  description="The number of results to return per page. Type: integer" />
-                    <parameter name="pageStartIndex"  description="The index at which to start the page of results. Type: integer" />
-                    <parameter name="dataTypes"  description="The types of First Party Data to return. Type: array" />
-                    <parameter name="lookAlikeModelBuildStatuses"  description=" Type: array" />
-                    <parameter name="lookAlikeModelEligibilities"  description=" Type: array" />
-                    <parameter name="lookAlikeModelResultStatuses"  description=" Type: array" />
-                    <parameter name="searchTerms"  description=" Type: array" />
-                    <parameter name="sortFields"  description=" Type: array" />
-                    <parameter name="uniqueCountMaximum"  description=" Type: integer" />
-                    <parameter name="uniqueCountMinimum"  description=" Type: integer" />
-                    <sequence>
+<template xmlns="http://ws.apache.org/ns/synapse" name="getFirstPartyDataForAdvertisers">
+    <!-- Request Body Parameter List -->
+    <parameter name="advertiserId" description="The platform ID of the advertiser making the query. Type: string"/>
+    <parameter name="pageSize" description="The number of results to return per page. Type: integer"/>
+    <parameter name="pageStartIndex" description="The index at which to start the page of results. Type: integer"/>
+    <parameter name="dataTypes" description="The types of First Party Data to return. Type: array"/>
+    <parameter name="lookAlikeModelBuildStatuses" description=" Type: array"/>
+    <parameter name="lookAlikeModelEligibilities" description=" Type: array"/>
+    <parameter name="lookAlikeModelResultStatuses" description=" Type: array"/>
+    <parameter name="searchTerms" description=" Type: array"/>
+    <parameter name="sortFields" description=" Type: array"/>
+    <parameter name="uniqueCountMaximum" description=" Type: integer"/>
+    <parameter name="uniqueCountMinimum" description=" Type: integer"/>
+    <sequence>
         <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
             <property name="operationPath" value="/v3/dmp/firstparty/advertiser"/>
-                                </class>
-                                                        <payloadFactory media-type="json" template-type="freemarker">
-                        <format>
-                            <![CDATA[{
+        </class>
+        <payloadFactory media-type="json" template-type="freemarker">
+            <format>
+                <![CDATA[{
                                                                                         <#if (args.arg1)?has_content>
                                     "AdvertiserId": "${args.arg1}",                                </#if>
                                                                                             <#if (args.arg2)?has_content>
@@ -57,26 +57,26 @@
                                                                                             <#if (args.arg11)?has_content>
                                     "UniqueCountMinimum": "${args.arg11}"                                </#if>
                                                                                         }]]>
-                        </format>
-                        <args>
-                                                            <arg evaluator="xml" expression="$func:advertiserId"/>
-                                                            <arg evaluator="xml" expression="$func:pageSize"/>
-                                                            <arg evaluator="xml" expression="$func:pageStartIndex"/>
-                                                            <arg evaluator="xml" expression="$func:dataTypes"/>
-                                                            <arg evaluator="xml" expression="$func:lookAlikeModelBuildStatuses"/>
-                                                            <arg evaluator="xml" expression="$func:lookAlikeModelEligibilities"/>
-                                                            <arg evaluator="xml" expression="$func:lookAlikeModelResultStatuses"/>
-                                                            <arg evaluator="xml" expression="$func:searchTerms"/>
-                                                            <arg evaluator="xml" expression="$func:sortFields"/>
-                                                            <arg evaluator="xml" expression="$func:uniqueCountMaximum"/>
-                                                            <arg evaluator="xml" expression="$func:uniqueCountMinimum"/>
-                                                    </args>
-                    </payloadFactory>
-                                <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-                        <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/>
-                            <header name="Accept" value="application/json" scope="transport" action="set"/>
-                                <call>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:advertiserId"/>
+                <arg evaluator="xml" expression="$func:pageSize"/>
+                <arg evaluator="xml" expression="$func:pageStartIndex"/>
+                <arg evaluator="xml" expression="$func:dataTypes"/>
+                <arg evaluator="xml" expression="$func:lookAlikeModelBuildStatuses"/>
+                <arg evaluator="xml" expression="$func:lookAlikeModelEligibilities"/>
+                <arg evaluator="xml" expression="$func:lookAlikeModelResultStatuses"/>
+                <arg evaluator="xml" expression="$func:searchTerms"/>
+                <arg evaluator="xml" expression="$func:sortFields"/>
+                <arg evaluator="xml" expression="$func:uniqueCountMaximum"/>
+                <arg evaluator="xml" expression="$func:uniqueCountMinimum"/>
+            </args>
+        </payloadFactory>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <call>
             <endpoint>
                 <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>

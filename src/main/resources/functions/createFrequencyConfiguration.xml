@@ -12,34 +12,36 @@
   ~ associated services.
   -->
 
-<!-- Generated on 18-Wed, 09, 2024 21:27:07+0530 -->
+<!-- Generated on 22-Sun, 09, 2024 21:58:29+0530 -->
 
-<template xmlns="http://ws.apache.org/ns/synapse" name="POST_v3_frequency_config">
-                            <!-- Request Body Parameter List -->
-                    <parameter name="bidLists"  description="Bid lists apply frequency settings to ad groups, campaigns, and other entities. Type: array" />
-                    <parameter name="counter"  description="Defines the frequency counter framework for tracking the number of times an ad is served. Type: object" />
-                    <sequence>
+<template xmlns="http://ws.apache.org/ns/synapse" name="createFrequencyConfiguration">
+    <!-- Request Body Parameter List -->
+    <parameter name="bidLists"
+               description="Bid lists apply frequency settings to ad groups, campaigns, and other entities. Type: array"/>
+    <parameter name="counter"
+               description="Defines the frequency counter framework for tracking the number of times an ad is served. Type: object"/>
+    <sequence>
         <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
             <property name="operationPath" value="/v3/frequency/config"/>
-                                </class>
-                                                        <payloadFactory media-type="json" template-type="freemarker">
-                        <format>
-                            <![CDATA[{
+        </class>
+        <payloadFactory media-type="json" template-type="freemarker">
+            <format>
+                <![CDATA[{
                                                                                         <#if (args.arg1)?has_content>
                                     "BidLists": "${args.arg1}",                                </#if>
                                                                                             <#if (args.arg2)?has_content>
                                     "Counter": "${args.arg2}"                                </#if>
                                                                                         }]]>
-                        </format>
-                        <args>
-                                                            <arg evaluator="xml" expression="$func:bidLists"/>
-                                                            <arg evaluator="xml" expression="$func:counter"/>
-                                                    </args>
-                    </payloadFactory>
-                                <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-                        <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/>
-                                        <call>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:bidLists"/>
+                <arg evaluator="xml" expression="$func:counter"/>
+            </args>
+        </payloadFactory>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        <call>
             <endpoint>
                 <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>

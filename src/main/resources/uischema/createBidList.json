@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_advertiser",
-    "title": "POST V 3 Advertiser",
-    "help": "Create a new advertiser entity with the necessary details for attribution and domain address.",
+    "operationName": "createBidList",
+    "title": "Create Bid List",
+    "help": "Create a bid list, returning the created bid list.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,82 +51,52 @@
                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "advertiserName",
-                                            "displayName": "Advertiser Name",
+                                            "name": "bidLines",
+                                            "displayName": "Bid Lines",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The name of the advertiser. Type: string"
+                                            "helpTip": "The list of BidLines that will be used along with the ResolutionType to calculate the adjustment for this BidList. Type: array"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "attributionClickLookbackWindowInSeconds",
-                                            "displayName": "Attribution Click Lookback Window In Seconds",
+                                            "name": "resolutionType",
+                                            "displayName": "Resolution Type",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "Time window for click attribution in seconds. Type: integer"
+                                            "required": "false",
+                                            "helpTip": "The ResolutionType determines how BidAdjustments are handled when an impression matches multiple BidLines. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "attributionImpressionLookbackWindowInSeconds",
-                                            "displayName": "Attribution Impression Lookback Window In Seconds",
+                                            "name": "bidListAdjustmentType",
+                                            "displayName": "Bid List Adjustment Type",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "Time window for impression attribution in seconds. Type: integer"
+                                            "helpTip": "Defines how bid adjustments are applied (e.g., BlockList, TargetList, Optimized). Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "clickDedupWindowInSeconds",
-                                            "displayName": "Click Dedup Window In Seconds",
+                                            "name": "bidListOwner",
+                                            "displayName": "Bid List Owner",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "Window for de-duplicating similar clicks. Type: integer"
+                                            "required": "false",
+                                            "helpTip": "The type of owner that controls this bid list (e.g., AdGroup, Campaign, Advertiser). Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "conversionDedupWindowInSeconds",
-                                            "displayName": "Conversion Dedup Window In Seconds",
+                                            "name": "name",
+                                            "displayName": "Name",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "Window for de-duplicating similar conversions. Type: integer"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "defaultRightMediaOfferTypeId",
-                                            "displayName": "Default Right Media Offer Type Id",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "Default Right Media Offer Type ID. Type: integer"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "domainAddress",
-                                            "displayName": "Domain Address",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "The domain address for the advertiser. Type: string"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "partnerId",
-                                            "displayName": "Partner Id",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "The ID of the partner who owns this advertiser. Type: string"
+                                            "helpTip": "A name for the bid list. Type: string"
                                         }
                                     }                                                            ]
                         }

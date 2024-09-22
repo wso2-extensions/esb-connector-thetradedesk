@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "GET_v3_campaign_{campaignId}_metrics",
-    "title": "GET V 3 Campaign { Campaign Id } Metrics",
-    "help": "Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.",
+    "operationName": "getAdvertiserById",
+    "title": "Get Advertiser By Id",
+    "help": "Get details of an existing advertiser using the advertiser's platform ID.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,12 +51,12 @@
                                                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "campaignId",
-                                            "displayName": "Campaign Id",
+                                            "name": "advertiserId",
+                                            "displayName": "Advertiser Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The ID of the campaign to retrieve metrics for"
+                                            "helpTip": "The platform ID of the advertiser to retrieve."
                                         }
                                     }                                                            ]
                         }

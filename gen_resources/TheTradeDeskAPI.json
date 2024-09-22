@@ -1573,6 +1573,7 @@
     "paths": {
         "/v3/advertiser": {
             "post": {
+                "operationId": "createAdvertiser",
                 "summary": "Create a new advertiser",
                 "description": "Create a new advertiser entity with the necessary details for attribution and domain address.",
                 "requestBody": {
@@ -1604,6 +1605,7 @@
         },
         "/v3/advertiser/{advertiserId}": {
             "get": {
+                "operationId": "getAdvertiserById",
                 "summary": "Retrieve an advertiser by ID",
                 "description": "Get details of an existing advertiser using the advertiser's platform ID.",
                 "parameters": [
@@ -1639,6 +1641,7 @@
         },
         "/v3/adgroup": {
             "post": {
+                "operationId": "createAdGroup",
                 "summary": "Create a new Ad Group",
                 "description": "This endpoint allows you to create a new Ad Group within a campaign.",
                 "requestBody": {
@@ -1670,6 +1673,7 @@
         },
         "/v3/creative": {
             "post": {
+                "operationId": "createCreative",
                 "summary": "Create a new creative",
                 "description": "Create a new creative under an advertiser.",
                 "requestBody": {
@@ -1701,6 +1705,7 @@
         },
         "/v3/bidlist": {
             "post": {
+                "operationId": "createBidList",
                 "summary": "Create a bid list",
                 "description": "Create a bid list, returning the created bid list.",
                 "requestBody": {
@@ -1732,6 +1737,7 @@
         },
         "/v3/campaign": {
             "post": {
+                "operationId": "createCampaign",
                 "summary": "Create a new campaign",
                 "description": "Create a new campaign entity with the necessary details such as name, budget, and start date.",
                 "requestBody": {
@@ -1763,6 +1769,7 @@
         },
         "/v3/campaign/{campaignId}/metrics": {
             "get": {
+                "operationId": "getCampaignMetrics",
                 "summary": "Get metrics for an existing campaign",
                 "description": "Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.",
                 "parameters": [
@@ -1798,6 +1805,7 @@
         },
         "/v3/dmp/firstparty/advertiser": {
             "post": {
+                "operationId": "getFirstPartyDataForAdvertisers",
                 "summary": "Get First Party Data for Advertisers",
                 "description": "Retrieve the First Party Data matching the provided query for an advertiser.",
                 "requestBody": {
@@ -1829,6 +1837,7 @@
         },
         "/v3/frequency/config": {
             "post": {
+                "operationId": "createFrequencyConfiguration",
                 "summary": "Create a frequency configuration",
                 "description": "Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.",
                 "requestBody": {
@@ -1853,6 +1862,7 @@
         },
         "/v3/trackingtag/{trackingTagId}": {
             "get": {
+                "operationId": "getTrackingTagById",
                 "summary": "Get a tracking tag",
                 "description": "Retrieve a tracking tag by its ID.",
                 "parameters": [
@@ -1888,6 +1898,7 @@
         },
         "/v3/seller/query": {
             "post": {
+                "operationId": "querySellers",
                 "summary": "Retrieve a paged, filterable list of sellers",
                 "description": "Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.",
                 "requestBody": {
@@ -1919,6 +1930,7 @@
         },
         "/v3/iptargetinglist": {
             "post": {
+                "operationId": "createIpTargetingList",
                 "summary": "Create a new IP Targeting List",
                 "description": "Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists.",
                 "requestBody": {
@@ -1950,6 +1962,7 @@
         },
         "/v3/myreports/reportschedule/{scheduleId}": {
             "get": {
+                "operationId": "getReportScheduleById",
                 "summary": "Get a report schedule",
                 "description": "Retrieve details of a report schedule by its ID.",
                 "parameters": [
@@ -1983,6 +1996,7 @@
         },
         "/v3/overview/advertiser/{advertiserId}": {
             "get": {
+                "operationId": "getAdvertiserOverview",
                 "summary": "Get an advertiser overview",
                 "description": "Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.",
                 "parameters": [
@@ -2015,6 +2029,7 @@
         },
         "/v3/universalforecasting/generate": {
             "post": {
+                "operationId": "generateForecast",
                 "summary": "Generate a forecast",
                 "description": "Generate a forecast based on the data available at the time of the request.",
                 "requestBody": {

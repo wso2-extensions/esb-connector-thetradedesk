@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "GET_v3_advertiser_{advertiserId}",
-    "title": "GET V 3 Advertiser { Advertiser Id }",
-    "help": "Get details of an existing advertiser using the advertiser's platform ID.",
+    "operationName": "getTrackingTagById",
+    "title": "Get Tracking Tag By Id",
+    "help": "Retrieve a tracking tag by its ID.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,12 +51,12 @@
                                                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "advertiserId",
-                                            "displayName": "Advertiser Id",
+                                            "name": "trackingTagId",
+                                            "displayName": "Tracking Tag Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The platform ID of the advertiser to retrieve."
+                                            "helpTip": "The ID of the tracking tag to retrieve."
                                         }
                                     }                                                            ]
                         }

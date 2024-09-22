@@ -4,116 +4,41 @@
 
 | Operation        | Description |
 | ------------- |-------------|
-| [GET_v3_advertiser_{advertiserId}](#get-v-3-advertiser-{-advertiser-id-})| Get details of an existing advertiser using the advertiser's platform ID. |
-| [GET_v3_campaign_{campaignId}_metrics](#get-v-3-campaign-{-campaign-id-}-metrics)| Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics. |
-| [GET_v3_myreports_reportschedule_{scheduleId}](#get-v-3-myreports-reportschedule-{-schedule-id-})| Retrieve details of a report schedule by its ID. |
-| [GET_v3_overview_advertiser_{advertiserId}](#get-v-3-overview-advertiser-{-advertiser-id-})| Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives. |
-| [GET_v3_trackingtag_{trackingTagId}](#get-v-3-trackingtag-{-tracking-tag-id-})| Retrieve a tracking tag by its ID. |
-| [POST_v3_adgroup](#post-v-3-adgroup)| This endpoint allows you to create a new Ad Group within a campaign. |
-| [POST_v3_advertiser](#post-v-3-advertiser)| Create a new advertiser entity with the necessary details for attribution and domain address. |
-| [POST_v3_bidlist](#post-v-3-bidlist)| Create a bid list, returning the created bid list. |
-| [POST_v3_campaign](#post-v-3-campaign)| Create a new campaign entity with the necessary details such as name, budget, and start date. |
-| [POST_v3_creative](#post-v-3-creative)| Create a new creative under an advertiser. |
-| [POST_v3_dmp_firstparty_advertiser](#post-v-3-dmp-firstparty-advertiser)| Retrieve the First Party Data matching the provided query for an advertiser. |
-| [POST_v3_frequency_config](#post-v-3-frequency-config)| Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists. |
-| [POST_v3_iptargetinglist](#post-v-3-iptargetinglist)| Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists. |
-| [POST_v3_seller_query](#post-v-3-seller-query)| Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform. |
-| [POST_v3_universalforecasting_generate](#post-v-3-universalforecasting-generate)| Generate a forecast based on the data available at the time of the request. |
+| [createAdGroup](#create-ad-group)| This endpoint allows you to create a new Ad Group within a campaign. |
+| [createAdvertiser](#create-advertiser)| Create a new advertiser entity with the necessary details for attribution and domain address. |
+| [createBidList](#create-bid-list)| Create a bid list, returning the created bid list. |
+| [createCampaign](#create-campaign)| Create a new campaign entity with the necessary details such as name, budget, and start date. |
+| [createCreative](#create-creative)| Create a new creative under an advertiser. |
+| [createFrequencyConfiguration](#create-frequency-configuration)| Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists. |
+| [createIpTargetingList](#create-ip-targeting-list)| Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists. |
+| [generateForecast](#generate-forecast)| Generate a forecast based on the data available at the time of the request. |
+| [getAdvertiserById](#get-advertiser-by-id)| Get details of an existing advertiser using the advertiser's platform ID. |
+| [getAdvertiserOverview](#get-advertiser-overview)| Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives. |
+| [getCampaignMetrics](#get-campaign-metrics)| Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics. |
+| [getFirstPartyDataForAdvertisers](#get-first-party-data-for-advertisers)| Retrieve the First Party Data matching the provided query for an advertiser. |
+| [getReportScheduleById](#get-report-schedule-by-id)| Retrieve details of a report schedule by its ID. |
+| [getTrackingTagById](#get-tracking-tag-by-id)| Retrieve a tracking tag by its ID. |
+| [querySellers](#query-sellers)| Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform. |
 
 ## Operation Details
 
 This section provides details on each of the operations.
 
-### GET V 3 Advertiser { Advertiser Id }
-
-Get details of an existing advertiser using the advertiser's platform ID.
-
-**GET_v3_advertiser_{advertiserId}**
-
-```xml
-<theTradeDesk.GET_v3_advertiser_{advertiserId}>
-    <advertiserId>{$ctx:advertiserId}</advertiserId>
-</theTradeDesk.GET_v3_advertiser_{advertiserId}>
-```
-
-**Properties**
-
-* advertiserId: The platform ID of the advertiser to retrieve.
-### GET V 3 Campaign { Campaign Id } Metrics
-
-Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.
-
-**GET_v3_campaign_{campaignId}_metrics**
-
-```xml
-<theTradeDesk.GET_v3_campaign_{campaignId}_metrics>
-    <campaignId>{$ctx:campaignId}</campaignId>
-</theTradeDesk.GET_v3_campaign_{campaignId}_metrics>
-```
-
-**Properties**
-
-* campaignId: The ID of the campaign to retrieve metrics for
-### GET V 3 Myreports Reportschedule { Schedule Id }
-
-Retrieve details of a report schedule by its ID.
-
-**GET_v3_myreports_reportschedule_{scheduleId}**
-
-```xml
-<theTradeDesk.GET_v3_myreports_reportschedule_{scheduleId}>
-    <scheduleId>{$ctx:scheduleId}</scheduleId>
-</theTradeDesk.GET_v3_myreports_reportschedule_{scheduleId}>
-```
-
-**Properties**
-
-* scheduleId: The ID of the report schedule to retrieve.
-### GET V 3 Overview Advertiser { Advertiser Id }
-
-Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.
-
-**GET_v3_overview_advertiser_{advertiserId}**
-
-```xml
-<theTradeDesk.GET_v3_overview_advertiser_{advertiserId}>
-    <advertiserId>{$ctx:advertiserId}</advertiserId>
-</theTradeDesk.GET_v3_overview_advertiser_{advertiserId}>
-```
-
-**Properties**
-
-* advertiserId: The platform ID of the advertiser.
-### GET V 3 Trackingtag { Tracking Tag Id }
-
-Retrieve a tracking tag by its ID.
-
-**GET_v3_trackingtag_{trackingTagId}**
-
-```xml
-<theTradeDesk.GET_v3_trackingtag_{trackingTagId}>
-    <trackingTagId>{$ctx:trackingTagId}</trackingTagId>
-</theTradeDesk.GET_v3_trackingtag_{trackingTagId}>
-```
-
-**Properties**
-
-* trackingTagId: The ID of the tracking tag to retrieve.
-### POST V 3 Adgroup
+### Create Ad Group
 
 This endpoint allows you to create a new Ad Group within a campaign.
 
-**POST_v3_adgroup**
+**createAdGroup**
 
 ```xml
-<theTradeDesk.POST_v3_adgroup>
+<theTradeDesk.createAdGroup>
     <adGroupName>{$ctx:adGroupName}</adGroupName>
     <campaignId>{$ctx:campaignId}</campaignId>
     <budgetSettings>{$ctx:budgetSettings}</budgetSettings>
     <pacingMode>{$ctx:pacingMode}</pacingMode>
     <isEnabled>{$ctx:isEnabled}</isEnabled>
     <creativeIds>{$ctx:creativeIds}</creativeIds>
-</theTradeDesk.POST_v3_adgroup>
+</theTradeDesk.createAdGroup>
 ```
 
 **Properties**
@@ -156,14 +81,14 @@ parameter.
   }
 }
 ```
-### POST V 3 Advertiser
+### Create Advertiser
 
 Create a new advertiser entity with the necessary details for attribution and domain address.
 
-**POST_v3_advertiser**
+**createAdvertiser**
 
 ```xml
-<theTradeDesk.POST_v3_advertiser>
+<theTradeDesk.createAdvertiser>
     <advertiserName>{$ctx:advertiserName}</advertiserName>
     <attributionClickLookbackWindowInSeconds>{$ctx:attributionClickLookbackWindowInSeconds}</attributionClickLookbackWindowInSeconds>
     <attributionImpressionLookbackWindowInSeconds>{$ctx:attributionImpressionLookbackWindowInSeconds}</attributionImpressionLookbackWindowInSeconds>
@@ -172,7 +97,7 @@ Create a new advertiser entity with the necessary details for attribution and do
     <defaultRightMediaOfferTypeId>{$ctx:defaultRightMediaOfferTypeId}</defaultRightMediaOfferTypeId>
     <domainAddress>{$ctx:domainAddress}</domainAddress>
     <partnerId>{$ctx:partnerId}</partnerId>
-</theTradeDesk.POST_v3_advertiser>
+</theTradeDesk.createAdvertiser>
 ```
 
 **Properties**
@@ -185,20 +110,20 @@ Create a new advertiser entity with the necessary details for attribution and do
 * defaultRightMediaOfferTypeId: Default Right Media Offer Type ID. Type: integer
 * domainAddress: The domain address for the advertiser. Type: string
 * partnerId: The ID of the partner who owns this advertiser. Type: string
-### POST V 3 Bidlist
+### Create Bid List
 
 Create a bid list, returning the created bid list.
 
-**POST_v3_bidlist**
+**createBidList**
 
 ```xml
-<theTradeDesk.POST_v3_bidlist>
+<theTradeDesk.createBidList>
     <bidLines>{$ctx:bidLines}</bidLines>
     <resolutionType>{$ctx:resolutionType}</resolutionType>
     <bidListAdjustmentType>{$ctx:bidListAdjustmentType}</bidListAdjustmentType>
     <bidListOwner>{$ctx:bidListOwner}</bidListOwner>
     <name>{$ctx:name}</name>
-</theTradeDesk.POST_v3_bidlist>
+</theTradeDesk.createBidList>
 ```
 
 **Properties**
@@ -239,14 +164,14 @@ parameter.
 * bidListAdjustmentType: Defines how bid adjustments are applied (e.g., BlockList, TargetList, Optimized). Type: string
 * bidListOwner: The type of owner that controls this bid list (e.g., AdGroup, Campaign, Advertiser). Type: string
 * name: A name for the bid list. Type: string
-### POST V 3 Campaign
+### Create Campaign
 
 Create a new campaign entity with the necessary details such as name, budget, and start date.
 
-**POST_v3_campaign**
+**createCampaign**
 
 ```xml
-<theTradeDesk.POST_v3_campaign>
+<theTradeDesk.createCampaign>
     <advertiserId>{$ctx:advertiserId}</advertiserId>
     <campaignName>{$ctx:campaignName}</campaignName>
     <budget>{$ctx:budget}</budget>
@@ -254,7 +179,7 @@ Create a new campaign entity with the necessary details such as name, budget, an
     <endDate>{$ctx:endDate}</endDate>
     <primaryGoal>{$ctx:primaryGoal}</primaryGoal>
     <trackingTags>{$ctx:trackingTags}</trackingTags>
-</theTradeDesk.POST_v3_campaign>
+</theTradeDesk.createCampaign>
 ```
 
 **Properties**
@@ -322,20 +247,20 @@ parameter.
   }
 }
 ```
-### POST V 3 Creative
+### Create Creative
 
 Create a new creative under an advertiser.
 
-**POST_v3_creative**
+**createCreative**
 
 ```xml
-<theTradeDesk.POST_v3_creative>
+<theTradeDesk.createCreative>
     <advertiserId>{$ctx:advertiserId}</advertiserId>
     <creativeName>{$ctx:creativeName}</creativeName>
     <availability>{$ctx:availability}</availability>
     <description>{$ctx:description}</description>
     <clickthroughUrl>{$ctx:clickthroughUrl}</clickthroughUrl>
-</theTradeDesk.POST_v3_creative>
+</theTradeDesk.createCreative>
 ```
 
 **Properties**
@@ -345,132 +270,17 @@ Create a new creative under an advertiser.
 * availability: Indicates if the Creative is 'Available' for use or 'Archived'. 'Archived' creatives are hidden and associations removed. Type: string
 * description: An optional description of the creative. Max length is 512. Type: string
 * clickthroughUrl: The URL to invoke when the user clicks the ad. This may include click tracking. Max length is 5000. Type: string
-### POST V 3 Dmp Firstparty Advertiser
-
-Retrieve the First Party Data matching the provided query for an advertiser.
-
-**POST_v3_dmp_firstparty_advertiser**
-
-```xml
-<theTradeDesk.POST_v3_dmp_firstparty_advertiser>
-    <advertiserId>{$ctx:advertiserId}</advertiserId>
-    <pageSize>{$ctx:pageSize}</pageSize>
-    <pageStartIndex>{$ctx:pageStartIndex}</pageStartIndex>
-    <dataTypes>{$ctx:dataTypes}</dataTypes>
-    <lookAlikeModelBuildStatuses>{$ctx:lookAlikeModelBuildStatuses}</lookAlikeModelBuildStatuses>
-    <lookAlikeModelEligibilities>{$ctx:lookAlikeModelEligibilities}</lookAlikeModelEligibilities>
-    <lookAlikeModelResultStatuses>{$ctx:lookAlikeModelResultStatuses}</lookAlikeModelResultStatuses>
-    <searchTerms>{$ctx:searchTerms}</searchTerms>
-    <sortFields>{$ctx:sortFields}</sortFields>
-    <uniqueCountMaximum>{$ctx:uniqueCountMaximum}</uniqueCountMaximum>
-    <uniqueCountMinimum>{$ctx:uniqueCountMinimum}</uniqueCountMinimum>
-</theTradeDesk.POST_v3_dmp_firstparty_advertiser>
-```
-
-**Properties**
-
-* advertiserId: The platform ID of the advertiser making the query. Type: string
-* pageSize: The number of results to return per page. Type: integer
-* pageStartIndex: The index at which to start the page of results. Type: integer
-* dataTypes: The types of First Party Data to return. Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "description" : "The types of First Party Data to return.",
-  "items" : {
-    "type" : "string",
-    "enum" : [ "Keyword", "TrackingTag", "IPAddressRange", "ImportedAdvertiserData", "ImportedAdvertiserDataWithBaseBid", "HouseholdExtension", "ClickRetargeting", "DirectIPTargeting", "PlayerEventStart", "PlayerEventMidpoint", "PlayerEventComplete", "ThirdPartyImpression", "FixedPriceUser", "CrmData" ]
-  }
-}
-```
-* lookAlikeModelBuildStatuses:  Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "nullable" : true,
-  "items" : {
-    "type" : "string",
-    "enum" : [ "NotRequested", "Queued", "Built" ]
-  }
-}
-```
-* lookAlikeModelEligibilities:  Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "nullable" : true,
-  "items" : {
-    "type" : "string",
-    "enum" : [ "Eligible", "NotEligible" ]
-  }
-}
-```
-* lookAlikeModelResultStatuses:  Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "nullable" : true,
-  "items" : {
-    "type" : "string",
-    "enum" : [ "NoResults", "Ready" ]
-  }
-}
-```
-* searchTerms:  Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "nullable" : true,
-  "items" : {
-    "type" : "string"
-  }
-}
-```
-* sortFields:  Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "nullable" : true,
-  "items" : {
-    "type" : "object",
-    "properties" : {
-      "FieldId" : {
-        "type" : "string",
-        "enum" : [ "Name", "DataType", "Uniques" ]
-      },
-      "Ascending" : {
-        "type" : "boolean",
-        "default" : true
-      }
-    }
-  }
-}
-```
-* uniqueCountMaximum:  Type: integer
-* uniqueCountMinimum:  Type: integer
-### POST V 3 Frequency Config
+### Create Frequency Configuration
 
 Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.
 
-**POST_v3_frequency_config**
+**createFrequencyConfiguration**
 
 ```xml
-<theTradeDesk.POST_v3_frequency_config>
+<theTradeDesk.createFrequencyConfiguration>
     <bidLists>{$ctx:bidLists}</bidLists>
     <counter>{$ctx:counter}</counter>
-</theTradeDesk.POST_v3_frequency_config>
+</theTradeDesk.createFrequencyConfiguration>
 ```
 
 **Properties**
@@ -568,18 +378,18 @@ parameter.
   "description" : "Defines the frequency counter framework for tracking the number of times an ad is served."
 }
 ```
-### POST V 3 Iptargetinglist
+### Create Ip Targeting List
 
 Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists.
 
-**POST_v3_iptargetinglist**
+**createIpTargetingList**
 
 ```xml
-<theTradeDesk.POST_v3_iptargetinglist>
+<theTradeDesk.createIpTargetingList>
     <advertiserId>{$ctx:advertiserId}</advertiserId>
     <iPTargetingDataName>{$ctx:iPTargetingDataName}</iPTargetingDataName>
     <iPTargetingRanges>{$ctx:iPTargetingRanges}</iPTargetingRanges>
-</theTradeDesk.POST_v3_iptargetinglist>
+</theTradeDesk.createIpTargetingList>
 ```
 
 **Properties**
@@ -611,86 +421,14 @@ parameter.
   }
 }
 ```
-### POST V 3 Seller Query
-
-Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.
-
-**POST_v3_seller_query**
-
-```xml
-<theTradeDesk.POST_v3_seller_query>
-    <pageSize>{$ctx:pageSize}</pageSize>
-    <pageStartIndex>{$ctx:pageStartIndex}</pageStartIndex>
-    <includedSellerDomains>{$ctx:includedSellerDomains}</includedSellerDomains>
-    <sellerNameFilters>{$ctx:sellerNameFilters}</sellerNameFilters>
-    <sellerStatusFilter>{$ctx:sellerStatusFilter}</sellerStatusFilter>
-    <sortFields>{$ctx:sortFields}</sortFields>
-</theTradeDesk.POST_v3_seller_query>
-```
-
-**Properties**
-
-* pageSize: The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100. Type: integer
-* pageStartIndex: The zero-based index at which to start the page of results. Type: integer
-* includedSellerDomains: Filter to a seller whose SellerDomain matches the value passed for this property. Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "description" : "Filter to a seller whose SellerDomain matches the value passed for this property.",
-  "nullable" : true,
-  "items" : {
-    "type" : "string"
-  }
-}
-```
-* sellerNameFilters: Filter to a seller whose SellerName contains the value passed for this property. Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "description" : "Filter to a seller whose SellerName contains the value passed for this property.",
-  "nullable" : true,
-  "items" : {
-    "type" : "string"
-  }
-}
-```
-* sellerStatusFilter: Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string
-* sortFields: Optionally, specify fields to sort the results by. Type: array
-This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
-parameter.
-```json
-{
-  "type" : "array",
-  "description" : "Optionally, specify fields to sort the results by.",
-  "nullable" : true,
-  "items" : {
-    "type" : "object",
-    "properties" : {
-      "FieldId" : {
-        "type" : "string",
-        "description" : "The field ID by which to sort.",
-        "enum" : [ "SellerName", "SellerDomain" ]
-      },
-      "Ascending" : {
-        "type" : "boolean",
-        "description" : "Whether to sort this field in ascending order (true) or descending order (false). Defaults to true."
-      }
-    }
-  }
-}
-```
-### POST V 3 Universalforecasting Generate
+### Generate Forecast
 
 Generate a forecast based on the data available at the time of the request.
 
-**POST_v3_universalforecasting_generate**
+**generateForecast**
 
 ```xml
-<theTradeDesk.POST_v3_universalforecasting_generate>
+<theTradeDesk.generateForecast>
     <advertiserId>{$ctx:advertiserId}</advertiserId>
     <audienceId>{$ctx:audienceId}</audienceId>
     <averageBidCPMInAdvertiserCurrency>{$ctx:averageBidCPMInAdvertiserCurrency}</averageBidCPMInAdvertiserCurrency>
@@ -700,7 +438,7 @@ Generate a forecast based on the data available at the time of the request.
     <generateBudgetPoints>{$ctx:generateBudgetPoints}</generateBudgetPoints>
     <timeWindow>{$ctx:timeWindow}</timeWindow>
     <universalForecastingBidLists>{$ctx:universalForecastingBidLists}</universalForecastingBidLists>
-</theTradeDesk.POST_v3_universalforecasting_generate>
+</theTradeDesk.generateForecast>
 ```
 
 **Properties**
@@ -815,6 +553,268 @@ parameter.
             }
           }
         }
+      }
+    }
+  }
+}
+```
+### Get Advertiser By Id
+
+Get details of an existing advertiser using the advertiser's platform ID.
+
+**getAdvertiserById**
+
+```xml
+<theTradeDesk.getAdvertiserById>
+    <advertiserId>{$ctx:advertiserId}</advertiserId>
+</theTradeDesk.getAdvertiserById>
+```
+
+**Properties**
+
+* advertiserId: The platform ID of the advertiser to retrieve.
+### Get Advertiser Overview
+
+Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.
+
+**getAdvertiserOverview**
+
+```xml
+<theTradeDesk.getAdvertiserOverview>
+    <advertiserId>{$ctx:advertiserId}</advertiserId>
+</theTradeDesk.getAdvertiserOverview>
+```
+
+**Properties**
+
+* advertiserId: The platform ID of the advertiser.
+### Get Campaign Metrics
+
+Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.
+
+**getCampaignMetrics**
+
+```xml
+<theTradeDesk.getCampaignMetrics>
+    <campaignId>{$ctx:campaignId}</campaignId>
+</theTradeDesk.getCampaignMetrics>
+```
+
+**Properties**
+
+* campaignId: The ID of the campaign to retrieve metrics for
+### Get First Party Data For Advertisers
+
+Retrieve the First Party Data matching the provided query for an advertiser.
+
+**getFirstPartyDataForAdvertisers**
+
+```xml
+<theTradeDesk.getFirstPartyDataForAdvertisers>
+    <advertiserId>{$ctx:advertiserId}</advertiserId>
+    <pageSize>{$ctx:pageSize}</pageSize>
+    <pageStartIndex>{$ctx:pageStartIndex}</pageStartIndex>
+    <dataTypes>{$ctx:dataTypes}</dataTypes>
+    <lookAlikeModelBuildStatuses>{$ctx:lookAlikeModelBuildStatuses}</lookAlikeModelBuildStatuses>
+    <lookAlikeModelEligibilities>{$ctx:lookAlikeModelEligibilities}</lookAlikeModelEligibilities>
+    <lookAlikeModelResultStatuses>{$ctx:lookAlikeModelResultStatuses}</lookAlikeModelResultStatuses>
+    <searchTerms>{$ctx:searchTerms}</searchTerms>
+    <sortFields>{$ctx:sortFields}</sortFields>
+    <uniqueCountMaximum>{$ctx:uniqueCountMaximum}</uniqueCountMaximum>
+    <uniqueCountMinimum>{$ctx:uniqueCountMinimum}</uniqueCountMinimum>
+</theTradeDesk.getFirstPartyDataForAdvertisers>
+```
+
+**Properties**
+
+* advertiserId: The platform ID of the advertiser making the query. Type: string
+* pageSize: The number of results to return per page. Type: integer
+* pageStartIndex: The index at which to start the page of results. Type: integer
+* dataTypes: The types of First Party Data to return. Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "description" : "The types of First Party Data to return.",
+  "items" : {
+    "type" : "string",
+    "enum" : [ "Keyword", "TrackingTag", "IPAddressRange", "ImportedAdvertiserData", "ImportedAdvertiserDataWithBaseBid", "HouseholdExtension", "ClickRetargeting", "DirectIPTargeting", "PlayerEventStart", "PlayerEventMidpoint", "PlayerEventComplete", "ThirdPartyImpression", "FixedPriceUser", "CrmData" ]
+  }
+}
+```
+* lookAlikeModelBuildStatuses:  Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "nullable" : true,
+  "items" : {
+    "type" : "string",
+    "enum" : [ "NotRequested", "Queued", "Built" ]
+  }
+}
+```
+* lookAlikeModelEligibilities:  Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "nullable" : true,
+  "items" : {
+    "type" : "string",
+    "enum" : [ "Eligible", "NotEligible" ]
+  }
+}
+```
+* lookAlikeModelResultStatuses:  Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "nullable" : true,
+  "items" : {
+    "type" : "string",
+    "enum" : [ "NoResults", "Ready" ]
+  }
+}
+```
+* searchTerms:  Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "nullable" : true,
+  "items" : {
+    "type" : "string"
+  }
+}
+```
+* sortFields:  Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "nullable" : true,
+  "items" : {
+    "type" : "object",
+    "properties" : {
+      "FieldId" : {
+        "type" : "string",
+        "enum" : [ "Name", "DataType", "Uniques" ]
+      },
+      "Ascending" : {
+        "type" : "boolean",
+        "default" : true
+      }
+    }
+  }
+}
+```
+* uniqueCountMaximum:  Type: integer
+* uniqueCountMinimum:  Type: integer
+### Get Report Schedule By Id
+
+Retrieve details of a report schedule by its ID.
+
+**getReportScheduleById**
+
+```xml
+<theTradeDesk.getReportScheduleById>
+    <scheduleId>{$ctx:scheduleId}</scheduleId>
+</theTradeDesk.getReportScheduleById>
+```
+
+**Properties**
+
+* scheduleId: The ID of the report schedule to retrieve.
+### Get Tracking Tag By Id
+
+Retrieve a tracking tag by its ID.
+
+**getTrackingTagById**
+
+```xml
+<theTradeDesk.getTrackingTagById>
+    <trackingTagId>{$ctx:trackingTagId}</trackingTagId>
+</theTradeDesk.getTrackingTagById>
+```
+
+**Properties**
+
+* trackingTagId: The ID of the tracking tag to retrieve.
+### Query Sellers
+
+Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.
+
+**querySellers**
+
+```xml
+<theTradeDesk.querySellers>
+    <pageSize>{$ctx:pageSize}</pageSize>
+    <pageStartIndex>{$ctx:pageStartIndex}</pageStartIndex>
+    <includedSellerDomains>{$ctx:includedSellerDomains}</includedSellerDomains>
+    <sellerNameFilters>{$ctx:sellerNameFilters}</sellerNameFilters>
+    <sellerStatusFilter>{$ctx:sellerStatusFilter}</sellerStatusFilter>
+    <sortFields>{$ctx:sortFields}</sortFields>
+</theTradeDesk.querySellers>
+```
+
+**Properties**
+
+* pageSize: The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100. Type: integer
+* pageStartIndex: The zero-based index at which to start the page of results. Type: integer
+* includedSellerDomains: Filter to a seller whose SellerDomain matches the value passed for this property. Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "description" : "Filter to a seller whose SellerDomain matches the value passed for this property.",
+  "nullable" : true,
+  "items" : {
+    "type" : "string"
+  }
+}
+```
+* sellerNameFilters: Filter to a seller whose SellerName contains the value passed for this property. Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "description" : "Filter to a seller whose SellerName contains the value passed for this property.",
+  "nullable" : true,
+  "items" : {
+    "type" : "string"
+  }
+}
+```
+* sellerStatusFilter: Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string
+* sortFields: Optionally, specify fields to sort the results by. Type: array
+This is parameter is of a complex type. Use the below schema to build the parameter and set it as a property to this
+parameter.
+```json
+{
+  "type" : "array",
+  "description" : "Optionally, specify fields to sort the results by.",
+  "nullable" : true,
+  "items" : {
+    "type" : "object",
+    "properties" : {
+      "FieldId" : {
+        "type" : "string",
+        "description" : "The field ID by which to sort.",
+        "enum" : [ "SellerName", "SellerDomain" ]
+      },
+      "Ascending" : {
+        "type" : "boolean",
+        "description" : "Whether to sort this field in ascending order (true) or descending order (false). Defaults to true."
       }
     }
   }

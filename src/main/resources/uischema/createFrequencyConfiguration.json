@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_iptargetinglist",
-    "title": "POST V 3 Iptargetinglist",
-    "help": "Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists.",
+    "operationName": "createFrequencyConfiguration",
+    "title": "Create Frequency Configuration",
+    "help": "Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,32 +51,22 @@
                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "advertiserId",
-                                            "displayName": "Advertiser Id",
+                                            "name": "bidLists",
+                                            "displayName": "Bid Lists",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "The platform ID of the advertiser that owns this IP Targeting List. Type: string"
+                                            "required": "false",
+                                            "helpTip": "Bid lists apply frequency settings to ad groups, campaigns, and other entities. Type: array"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "iPTargetingDataName",
-                                            "displayName": "IP Targeting Data Name",
+                                            "name": "counter",
+                                            "displayName": "Counter",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "The name of the Data Element to create for users who are in the associated IP targeting ranges. Type: string"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "iPTargetingRanges",
-                                            "displayName": "IP Targeting Ranges",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "All the IP targeting ranges in this list. Type: array"
+                                            "required": "false",
+                                            "helpTip": "Defines the frequency counter framework for tracking the number of times an ad is served. Type: object"
                                         }
                                     }                                                            ]
                         }

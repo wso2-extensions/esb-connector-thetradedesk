@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2022, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+  ~
+  ~ This software is the property of WSO2 LLC. and its suppliers, if any.
+  ~ Dissemination of any information or reproduction of any material contained
+  ~ herein is strictly forbidden, unless permitted by WSO2 in accordance with
+  ~ the WSO2 Software License available at: https://wso2.com/licenses/eula/3.2
+  ~ For specific language governing the permissions and limitations under
+  ~ this license, please see the license as well as any agreement you’ve
+  ~ entered into with WSO2 governing the purchase of this software and any
+  ~ associated services.
+  -->
+
+<!-- Generated on 22-Sun, 09, 2024 21:58:29+0530 -->
+
+<template xmlns="http://ws.apache.org/ns/synapse" name="querySellers">
+    <!-- Request Body Parameter List -->
+    <parameter name="pageSize"
+               description="The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100. Type: integer"/>
+    <parameter name="pageStartIndex"
+               description="The zero-based index at which to start the page of results. Type: integer"/>
+    <parameter name="includedSellerDomains"
+               description="Filter to a seller whose SellerDomain matches the value passed for this property. Type: array"/>
+    <parameter name="sellerNameFilters"
+               description="Filter to a seller whose SellerName contains the value passed for this property. Type: array"/>
+    <parameter name="sellerStatusFilter"
+               description="Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string"/>
+    <parameter name="sortFields" description="Optionally, specify fields to sort the results by. Type: array"/>
+    <sequence>
+        <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
+            <property name="operationPath" value="/v3/seller/query"/>
+        </class>
+        <payloadFactory media-type="json" template-type="freemarker">
+            <format>
+                <![CDATA[{
+                                                                                        <#if (args.arg1)?has_content>
+                                    "PageSize": "${args.arg1}",                                </#if>
+                                                                                            <#if (args.arg2)?has_content>
+                                    "PageStartIndex": "${args.arg2}",                                </#if>
+                                                                                            <#if (args.arg3)?has_content>
+                                    "IncludedSellerDomains": "${args.arg3}",                                </#if>
+                                                                                            <#if (args.arg4)?has_content>
+                                    "SellerNameFilters": "${args.arg4}",                                </#if>
+                                                                                            <#if (args.arg5)?has_content>
+                                    "SellerStatusFilter": "${args.arg5}",                                </#if>
+                                                                                            <#if (args.arg6)?has_content>
+                                    "SortFields": "${args.arg6}"                                </#if>
+                                                                                        }]]>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:pageSize"/>
+                <arg evaluator="xml" expression="$func:pageStartIndex"/>
+                <arg evaluator="xml" expression="$func:includedSellerDomains"/>
+                <arg evaluator="xml" expression="$func:sellerNameFilters"/>
+                <arg evaluator="xml" expression="$func:sellerStatusFilter"/>
+                <arg evaluator="xml" expression="$func:sortFields"/>
+            </args>
+        </payloadFactory>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <call>
+            <endpoint>
+                <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+            </endpoint>
+        </call>
+        <class name="org.wso2.healthcare.integration.common.ehr.ResponseProcessingHandler"/>
+    </sequence>
+</template>

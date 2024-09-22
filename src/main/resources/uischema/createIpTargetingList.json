@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "GET_v3_overview_advertiser_{advertiserId}",
-    "title": "GET V 3 Overview Advertiser { Advertiser Id }",
-    "help": "Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.",
+    "operationName": "createIpTargetingList",
+    "title": "Create Ip Targeting List",
+    "help": "Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -43,12 +43,12 @@
                             ]
                         }
                     }
-                                        ,{
+                                                                                                    ,{
                         "type":"attributeGroup",
                         "value":{
-                            "groupName": "Parameters",
+                            "groupName": "Request Body",
                             "elements":[
-                                                                                                    {
+                                                                    {
                                         "type":"attribute",
                                         "value":{
                                             "name": "advertiserId",
@@ -56,12 +56,32 @@
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The platform ID of the advertiser."
+                                            "helpTip": "The platform ID of the advertiser that owns this IP Targeting List. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "iPTargetingDataName",
+                                            "displayName": "IP Targeting Data Name",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The name of the Data Element to create for users who are in the associated IP targeting ranges. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "iPTargetingRanges",
+                                            "displayName": "IP Targeting Ranges",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "All the IP targeting ranges in this list. Type: array"
                                         }
                                     }                                                            ]
                         }
                     }
-                                                                                                ]
+                                    ]
             }
         }
     ]

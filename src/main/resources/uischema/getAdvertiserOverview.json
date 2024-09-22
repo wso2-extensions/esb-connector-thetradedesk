@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_frequency_config",
-    "title": "POST V 3 Frequency Config",
-    "help": "Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.",
+    "operationName": "getAdvertiserOverview",
+    "title": "Get Advertiser Overview",
+    "help": "Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -43,35 +43,25 @@
                             ]
                         }
                     }
-                                                                                                    ,{
+                                        ,{
                         "type":"attributeGroup",
                         "value":{
-                            "groupName": "Request Body",
+                            "groupName": "Parameters",
                             "elements":[
-                                                                    {
+                                                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "bidLists",
-                                            "displayName": "Bid Lists",
+                                            "name": "advertiserId",
+                                            "displayName": "Advertiser Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Bid lists apply frequency settings to ad groups, campaigns, and other entities. Type: array"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "counter",
-                                            "displayName": "Counter",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Defines the frequency counter framework for tracking the number of times an ad is served. Type: object"
+                                            "required": "true",
+                                            "helpTip": "The platform ID of the advertiser."
                                         }
                                     }                                                            ]
                         }
                     }
-                                    ]
+                                                                                                ]
             }
         }
     ]

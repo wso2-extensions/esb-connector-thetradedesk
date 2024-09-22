@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "GET_v3_myreports_reportschedule_{scheduleId}",
-    "title": "GET V 3 Myreports Reportschedule { Schedule Id }",
-    "help": "Retrieve details of a report schedule by its ID.",
+    "operationName": "getCampaignMetrics",
+    "title": "Get Campaign Metrics",
+    "help": "Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,12 +51,12 @@
                                                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "scheduleId",
-                                            "displayName": "Schedule Id",
+                                            "name": "campaignId",
+                                            "displayName": "Campaign Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The ID of the report schedule to retrieve."
+                                            "helpTip": "The ID of the campaign to retrieve metrics for"
                                         }
                                     }                                                            ]
                         }

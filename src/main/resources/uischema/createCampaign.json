@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_adgroup",
-    "title": "POST V 3 Adgroup",
-    "help": "This endpoint allows you to create a new Ad Group within a campaign.",
+    "operationName": "createCampaign",
+    "title": "Create Campaign",
+    "help": "Create a new campaign entity with the necessary details such as name, budget, and start date.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -51,62 +51,72 @@
                                                                     {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "adGroupName",
-                                            "displayName": "Ad Group Name",
+                                            "name": "advertiserId",
+                                            "displayName": "Advertiser Id",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The name of the Ad Group. Type: string"
+                                            "helpTip": "The platform ID of the advertiser that owns this campaign. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "campaignId",
-                                            "displayName": "Campaign Id",
+                                            "name": "campaignName",
+                                            "displayName": "Campaign Name",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The ID of the Campaign that owns this Ad Group. Type: string"
+                                            "helpTip": "The name of the campaign. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "budgetSettings",
-                                            "displayName": "Budget Settings",
+                                            "name": "budget",
+                                            "displayName": "Budget",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "Settings for how much and how fast the Ad Group may spend. Type: object"
+                                            "helpTip": " Type: object"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "pacingMode",
-                                            "displayName": "Pacing Mode",
+                                            "name": "startDate",
+                                            "displayName": "Start Date",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The pacing mode for the Ad Group. Type: string"
+                                            "helpTip": "The start date and time in UTC when the campaign should begin spending. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "isEnabled",
-                                            "displayName": "Is Enabled",
+                                            "name": "endDate",
+                                            "displayName": "End Date",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "false",
-                                            "helpTip": "Whether the Ad Group is enabled to spend. Type: boolean"
+                                            "helpTip": "The end date and time in UTC when the campaign should stop spending. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "creativeIds",
-                                            "displayName": "Creative Ids",
+                                            "name": "primaryGoal",
+                                            "displayName": "Primary Goal",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "false",
-                                            "helpTip": "A list of Creative IDs associated with this Ad Group. Type: array"
+                                            "helpTip": " Type: object"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "trackingTags",
+                                            "displayName": "Tracking Tags",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "false",
+                                            "helpTip": "List of tracking tags associated with the campaign. Type: array"
                                         }
                                     }                                                            ]
                         }

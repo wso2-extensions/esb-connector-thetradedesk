@@ -1,8 +1,8 @@
 {
     "connectorName": "theTradeDesk",
-    "operationName": "POST_v3_universalforecasting_generate",
-    "title": "POST V 3 Universalforecasting Generate",
-    "help": "Generate a forecast based on the data available at the time of the request.",
+    "operationName": "createCreative",
+    "title": "Create Creative",
+    "help": "Create a new creative under an advertiser.",
     "elements": [
         {
             "type": "attributeGroup",
@@ -56,87 +56,47 @@
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "The platform ID of the advertiser requesting the forecast. Type: string"
+                                            "helpTip": "The platform ID of the advertiser that owns this creative. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "audienceId",
-                                            "displayName": "Audience Id",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "The ID for the audience to be used in the forecast. Type: string"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "averageBidCPMInAdvertiserCurrency",
-                                            "displayName": "Average Bid CPM In Advertiser Currency",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "The average bid in the advertiser's currency to be used for the forecast. Type: number"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "demographic",
-                                            "displayName": "Demographic",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": " Type: object"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "existingBidLists",
-                                            "displayName": "Existing Bid Lists",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": "Existing bid lists to be applied to the forecast. Type: array"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "forecastingAudiences",
-                                            "displayName": "Forecasting Audiences",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "false",
-                                            "helpTip": " Type: array"
-                                        }
-                                    },                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "generateBudgetPoints",
-                                            "displayName": "Generate Budget Points",
+                                            "name": "creativeName",
+                                            "displayName": "Creative Name",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "true",
-                                            "helpTip": "Set to true to generate budget points for impressions and reach. Type: boolean"
+                                            "helpTip": "The name of the creative. The value must not contain special characters like <>;^\\r\\n. Max length is 256. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "timeWindow",
-                                            "displayName": "Time Window",
+                                            "name": "availability",
+                                            "displayName": "Availability",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "false",
-                                            "helpTip": "The number of days (1 to 180) for the forecast. Type: integer"
+                                            "helpTip": "Indicates if the Creative is 'Available' for use or 'Archived'. 'Archived' creatives are hidden and associations removed. Type: string"
                                         }
                                     },                                                                    {
                                         "type":"attribute",
                                         "value":{
-                                            "name": "universalForecastingBidLists",
-                                            "displayName": "Universal Forecasting Bid Lists",
+                                            "name": "description",
+                                            "displayName": "Description",
                                             "inputType": "stringOrExpression",
                                             "defaultValue": "",
                                             "required": "false",
-                                            "helpTip": "New bid lists to be applied to the forecast. Type: array"
+                                            "helpTip": "An optional description of the creative. Max length is 512. Type: string"
+                                        }
+                                    },                                                                    {
+                                        "type":"attribute",
+                                        "value":{
+                                            "name": "clickthroughUrl",
+                                            "displayName": "Clickthrough Url",
+                                            "inputType": "stringOrExpression",
+                                            "defaultValue": "",
+                                            "required": "true",
+                                            "helpTip": "The URL to invoke when the user clicks the ad. This may include click tracking. Max length is 5000. Type: string"
                                         }
                                     }                                                            ]
                         }
