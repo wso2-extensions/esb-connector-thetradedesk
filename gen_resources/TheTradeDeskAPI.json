@@ -7,11 +7,11 @@
     },
     "servers": [
         {
-            "url": "https://api.thetradedesk.com/v3/",
+            "url": "https://api.thetradedesk.com/v3",
             "description": "Production environment"
         },
         {
-            "url": "https://ext-api.sb.thetradedesk.com/v3/",
+            "url": "https://ext-api.sb.thetradedesk.com/v3",
             "description": "Sandbox environment"
         }
     ],
@@ -1571,7 +1571,7 @@
         }
     },
     "paths": {
-        "/v3/advertiser": {
+        "/advertiser": {
             "post": {
                 "operationId": "createAdvertiser",
                 "summary": "Create a new advertiser",
@@ -1603,7 +1603,7 @@
                 }
             }
         },
-        "/v3/advertiser/{advertiserId}": {
+        "/advertiser/{advertiserId}": {
             "get": {
                 "operationId": "getAdvertiserById",
                 "summary": "Retrieve an advertiser by ID",
@@ -1639,7 +1639,7 @@
                 }
             }
         },
-        "/v3/adgroup": {
+        "/adgroup": {
             "post": {
                 "operationId": "createAdGroup",
                 "summary": "Create a new Ad Group",
@@ -1671,7 +1671,7 @@
                 }
             }
         },
-        "/v3/creative": {
+        "/creative": {
             "post": {
                 "operationId": "createCreative",
                 "summary": "Create a new creative",
@@ -1703,7 +1703,7 @@
                 }
             }
         },
-        "/v3/bidlist": {
+        "/bidlist": {
             "post": {
                 "operationId": "createBidList",
                 "summary": "Create a bid list",
@@ -1735,7 +1735,7 @@
                 }
             }
         },
-        "/v3/campaign": {
+        "/campaign": {
             "post": {
                 "operationId": "createCampaign",
                 "summary": "Create a new campaign",
@@ -1767,7 +1767,7 @@
                 }
             }
         },
-        "/v3/campaign/{campaignId}/metrics": {
+        "/campaign/{campaignId}/metrics": {
             "get": {
                 "operationId": "getCampaignMetrics",
                 "summary": "Get metrics for an existing campaign",
@@ -1803,7 +1803,7 @@
                 }
             }
         },
-        "/v3/dmp/firstparty/advertiser": {
+        "/dmp/firstparty/advertiser": {
             "post": {
                 "operationId": "getFirstPartyDataForAdvertisers",
                 "summary": "Get First Party Data for Advertisers",
@@ -1835,7 +1835,7 @@
                 }
             }
         },
-        "/v3/frequency/config": {
+        "/frequency/config": {
             "post": {
                 "operationId": "createFrequencyConfiguration",
                 "summary": "Create a frequency configuration",
@@ -1860,7 +1860,7 @@
                 }
             }
         },
-        "/v3/trackingtag/{trackingTagId}": {
+        "/trackingtag/{trackingTagId}": {
             "get": {
                 "operationId": "getTrackingTagById",
                 "summary": "Get a tracking tag",
@@ -1896,7 +1896,7 @@
                 }
             }
         },
-        "/v3/seller/query": {
+        "/seller/query": {
             "post": {
                 "operationId": "querySellers",
                 "summary": "Retrieve a paged, filterable list of sellers",
@@ -1928,7 +1928,7 @@
                 }
             }
         },
-        "/v3/iptargetinglist": {
+        "/iptargetinglist": {
             "post": {
                 "operationId": "createIpTargetingList",
                 "summary": "Create a new IP Targeting List",
@@ -1960,7 +1960,7 @@
                 }
             }
         },
-        "/v3/myreports/reportschedule/{scheduleId}": {
+        "/myreports/reportschedule/{scheduleId}": {
             "get": {
                 "operationId": "getReportScheduleById",
                 "summary": "Get a report schedule",
@@ -1994,7 +1994,7 @@
                 }
             }
         },
-        "/v3/overview/advertiser/{advertiserId}": {
+        "/overview/advertiser/{advertiserId}": {
             "get": {
                 "operationId": "getAdvertiserOverview",
                 "summary": "Get an advertiser overview",
@@ -2027,7 +2027,7 @@
                 }
             }
         },
-        "/v3/universalforecasting/generate": {
+        "/universalforecasting/generate": {
             "post": {
                 "operationId": "generateForecast",
                 "summary": "Generate a forecast",

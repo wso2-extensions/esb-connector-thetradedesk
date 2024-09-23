@@ -27,8 +27,8 @@
     <parameter name="primaryGoal" description=" Type: object"/>
     <parameter name="trackingTags" description="List of tracking tags associated with the campaign. Type: array"/>
     <sequence>
-        <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
-            <property name="operationPath" value="/v3/campaign"/>
+        <class name="org.wso2.carbon.theTradeDeskConnector.RestURLBuilder">
+            <property name="operationPath" value="/campaign"/>
         </class>
         <payloadFactory media-type="json" template-type="freemarker">
             <format>
@@ -38,15 +38,15 @@
                                                                                             <#if (args.arg2)?has_content>
                                     "CampaignName": "${args.arg2}",                                </#if>
                                                                                             <#if (args.arg3)?has_content>
-                                    "Budget": "${args.arg3}",                                </#if>
+                                    "Budget": ${args.arg3},                                </#if>
                                                                                             <#if (args.arg4)?has_content>
                                     "StartDate": "${args.arg4}",                                </#if>
                                                                                             <#if (args.arg5)?has_content>
                                     "EndDate": "${args.arg5}",                                </#if>
                                                                                             <#if (args.arg6)?has_content>
-                                    "PrimaryGoal": "${args.arg6}",                                </#if>
+                                    "PrimaryGoal": ${args.arg6},                                </#if>
                                                                                             <#if (args.arg7)?has_content>
-                                    "TrackingTags": "${args.arg7}"                                </#if>
+                                    "TrackingTags": ${args.arg7}                               </#if>
                                                                                         }]]>
             </format>
             <args>
@@ -63,11 +63,11 @@
         <property name="messageType" value="application/json" scope="axis2"/>
         <property name="ContentType" value="application/json" scope="axis2"/>
         <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <header name="TTD-Auth" expression="get-property('_TTD_AUTH_HEADER_')" scope="transport" action="set"/>
         <call>
             <endpoint>
                 <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
-        <class name="org.wso2.healthcare.integration.common.ehr.ResponseProcessingHandler"/>
     </sequence>
 </template>

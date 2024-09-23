@@ -18,16 +18,16 @@
     <!-- Path Parameter List -->
     <parameter name="campaignId" description="The ID of the campaign to retrieve metrics for"/>
     <sequence>
-        <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
-            <property name="operationPath" value="/v3/campaign/{campaignId}/metrics"/>
+        <class name="org.wso2.carbon.theTradeDeskConnector.RestURLBuilder">
+            <property name="operationPath" value="/campaign/{campaignId}/metrics"/>
             <property name="pathParameters" value="campaignId,"/>
         </class>
         <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <header name="TTD-Auth" expression="get-property('_TTD_AUTH_HEADER_')" scope="transport" action="set"/>
         <call>
             <endpoint>
                 <http method="GET" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
-        <class name="org.wso2.healthcare.integration.common.ehr.ResponseProcessingHandler"/>
     </sequence>
 </template>

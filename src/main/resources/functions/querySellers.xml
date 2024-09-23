@@ -28,8 +28,8 @@
                description="Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed. Type: string"/>
     <parameter name="sortFields" description="Optionally, specify fields to sort the results by. Type: array"/>
     <sequence>
-        <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
-            <property name="operationPath" value="/v3/seller/query"/>
+        <class name="org.wso2.carbon.theTradeDeskConnector.RestURLBuilder">
+            <property name="operationPath" value="/seller/query"/>
         </class>
         <payloadFactory media-type="json" template-type="freemarker">
             <format>
@@ -61,11 +61,11 @@
         <property name="messageType" value="application/json" scope="axis2"/>
         <property name="ContentType" value="application/json" scope="axis2"/>
         <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <header name="TTD-Auth" expression="get-property('_TTD_AUTH_HEADER_')" scope="transport" action="set"/>
         <call>
             <endpoint>
                 <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
-        <class name="org.wso2.healthcare.integration.common.ehr.ResponseProcessingHandler"/>
     </sequence>
 </template>

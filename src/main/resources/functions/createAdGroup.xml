@@ -24,8 +24,8 @@
     <parameter name="isEnabled" description="Whether the Ad Group is enabled to spend. Type: boolean"/>
     <parameter name="creativeIds" description="A list of Creative IDs associated with this Ad Group. Type: array"/>
     <sequence>
-        <class name="org.wso2.healthcare.integration.common.ehr.RestURLBuilder">
-            <property name="operationPath" value="/v3/adgroup"/>
+        <class name="org.wso2.carbon.theTradeDeskConnector.RestURLBuilder">
+            <property name="operationPath" value="/adgroup"/>
         </class>
         <payloadFactory media-type="json" template-type="freemarker">
             <format>
@@ -35,13 +35,13 @@
                                                                                             <#if (args.arg2)?has_content>
                                     "CampaignId": "${args.arg2}",                                </#if>
                                                                                             <#if (args.arg3)?has_content>
-                                    "BudgetSettings": "${args.arg3}",                                </#if>
+                                    "BudgetSettings": ${args.arg3},                                </#if>
                                                                                             <#if (args.arg4)?has_content>
                                     "PacingMode": "${args.arg4}",                                </#if>
                                                                                             <#if (args.arg5)?has_content>
-                                    "IsEnabled": "${args.arg5}",                                </#if>
+                                    "IsEnabled": ${args.arg5},                                </#if>
                                                                                             <#if (args.arg6)?has_content>
-                                    "CreativeIds": "${args.arg6}"                                </#if>
+                                    "CreativeIds": ${args.arg6}                                </#if>
                                                                                         }]]>
             </format>
             <args>
@@ -57,11 +57,11 @@
         <property name="messageType" value="application/json" scope="axis2"/>
         <property name="ContentType" value="application/json" scope="axis2"/>
         <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <header name="TTD-Auth" expression="get-property('_TTD_AUTH_HEADER_')" scope="transport" action="set"/>
         <call>
             <endpoint>
                 <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
             </endpoint>
         </call>
-        <class name="org.wso2.healthcare.integration.common.ehr.ResponseProcessingHandler"/>
     </sequence>
 </template>

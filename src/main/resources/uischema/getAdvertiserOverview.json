@@ -1,5 +1,5 @@
 {
-    "connectorName": "theTradeDesk",
+    "connectorName": "TheTradeDesk",
     "operationName": "getAdvertiserOverview",
     "title": "Get Advertiser Overview",
     "help": "Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.",
@@ -16,9 +16,9 @@
                           "displayName": "Connection",
                           "inputType": "connection",
                           "allowedConnectionTypes": [
-                            "theTradeDesk"
+                            "TheTradeDesk", "TheTradeDeskAuth"
                           ],
-                          "defaultType": "connection.theTradeDesk",
+                          "defaultType": "connection.TheTradeDesk",
                           "defaultValue": "",
                           "required": "true",
                           "helpTip": "Connection to be used"

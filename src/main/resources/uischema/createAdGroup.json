@@ -1,5 +1,5 @@
 {
-    "connectorName": "theTradeDesk",
+    "connectorName": "TheTradeDesk",
     "operationName": "createAdGroup",
     "title": "Create Ad Group",
     "help": "This endpoint allows you to create a new Ad Group within a campaign.",
@@ -16,9 +16,9 @@
                           "displayName": "Connection",
                           "inputType": "connection",
                           "allowedConnectionTypes": [
-                            "theTradeDesk"
+                            "TheTradeDesk", "TheTradeDeskAuth"
                           ],
-                          "defaultType": "connection.theTradeDesk",
+                          "defaultType": "connection.TheTradeDesk",
                           "defaultValue": "",
                           "required": "true",
                           "helpTip": "Connection to be used"
@@ -93,8 +93,8 @@
                                         "value":{
                                             "name": "isEnabled",
                                             "displayName": "Is Enabled",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
+                                            "inputType": "boolean",
+                                            "defaultValue": false,
                                             "required": "false",
                                             "helpTip": "Whether the Ad Group is enabled to spend. Type: boolean"
                                         }
@@ -104,7 +104,7 @@
                                             "name": "creativeIds",
                                             "displayName": "Creative Ids",
                                             "inputType": "stringOrExpression",
-                                            "defaultValue": "",
+                                            "defaultValue": [],
                                             "required": "false",
                                             "helpTip": "A list of Creative IDs associated with this Ad Group. Type: array"
                                         }

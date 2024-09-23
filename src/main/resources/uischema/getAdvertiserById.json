@@ -1,5 +1,5 @@
 {
-    "connectorName": "theTradeDesk",
+    "connectorName": "TheTradeDesk",
     "operationName": "getAdvertiserById",
     "title": "Get Advertiser By Id",
     "help": "Get details of an existing advertiser using the advertiser's platform ID.",
@@ -12,16 +12,16 @@
                     {
                         "type": "attribute",
                         "value": {
-                          "name": "configRef",
-                          "displayName": "Connection",
-                          "inputType": "connection",
-                          "allowedConnectionTypes": [
-                            "theTradeDesk"
-                          ],
-                          "defaultType": "connection.theTradeDesk",
-                          "defaultValue": "",
-                          "required": "true",
-                          "helpTip": "Connection to be used"
+                            "name": "configRef",
+                            "displayName": "Connection",
+                            "inputType": "connection",
+                            "allowedConnectionTypes": [
+                                "TheTradeDesk", "TheTradeDeskAuth"
+                            ],
+                            "defaultType": "connection.TheTradeDesk",
+                            "defaultValue": "",
+                            "required": "true",
+                            "helpTip": "Connection to be used"
                         }
                     },
                     {
@@ -42,26 +42,27 @@
                                 }
                             ]
                         }
-                    }
-                                        ,{
-                        "type":"attributeGroup",
-                        "value":{
+                    },
+                    {
+                        "type": "attributeGroup",
+                        "value": {
                             "groupName": "Parameters",
-                            "elements":[
-                                                                                                    {
-                                        "type":"attribute",
-                                        "value":{
-                                            "name": "advertiserId",
-                                            "displayName": "Advertiser Id",
-                                            "inputType": "stringOrExpression",
-                                            "defaultValue": "",
-                                            "required": "true",
-                                            "helpTip": "The platform ID of the advertiser to retrieve."
-                                        }
-                                    }                                                            ]
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "advertiserId",
+                                        "displayName": "Advertiser Id",
+                                        "inputType": "stringOrExpression",
+                                        "defaultValue": "",
+                                        "required": "true",
+                                        "helpTip": "The platform ID of the advertiser to retrieve."
+                                    }
+                                }
+                            ]
                         }
                     }
-                                                                                                ]
+                ]
             }
         }
     ]

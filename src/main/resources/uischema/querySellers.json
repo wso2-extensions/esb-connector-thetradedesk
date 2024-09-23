@@ -1,5 +1,5 @@
 {
-    "connectorName": "theTradeDesk",
+    "connectorName": "TheTradeDesk",
     "operationName": "querySellers",
     "title": "Query Sellers",
     "help": "Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.",
@@ -16,9 +16,9 @@
                           "displayName": "Connection",
                           "inputType": "connection",
                           "allowedConnectionTypes": [
-                            "theTradeDesk"
+                            "TheTradeDesk", "TheTradeDeskAuth"
                           ],
-                          "defaultType": "connection.theTradeDesk",
+                          "defaultType": "connection.TheTradeDesk",
                           "defaultValue": "",
                           "required": "true",
                           "helpTip": "Connection to be used"

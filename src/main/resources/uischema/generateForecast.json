@@ -1,5 +1,5 @@
 {
-    "connectorName": "theTradeDesk",
+    "connectorName": "TheTradeDesk",
     "operationName": "generateForecast",
     "title": "Generate Forecast",
     "help": "Generate a forecast based on the data available at the time of the request.",
@@ -16,9 +16,9 @@
                           "displayName": "Connection",
                           "inputType": "connection",
                           "allowedConnectionTypes": [
-                            "theTradeDesk"
+                            "TheTradeDesk", "TheTradeDeskAuth"
                           ],
-                          "defaultType": "connection.theTradeDesk",
+                          "defaultType": "connection.TheTradeDesk",
                           "defaultValue": "",
                           "required": "true",
                           "helpTip": "Connection to be used"

@@ -1,5 +1,5 @@
 {
-    "connectorName": "theTradeDesk",
+    "connectorName": "TheTradeDesk",
     "operationName": "createCampaign",
     "title": "Create Campaign",
     "help": "Create a new campaign entity with the necessary details such as name, budget, and start date.",
@@ -16,9 +16,9 @@
                           "displayName": "Connection",
                           "inputType": "connection",
                           "allowedConnectionTypes": [
-                            "theTradeDesk"
+                            "TheTradeDesk", "TheTradeDeskAuth"
                           ],
-                          "defaultType": "connection.theTradeDesk",
+                          "defaultType": "connection.TheTradeDesk",
                           "defaultValue": "",
                           "required": "true",
                           "helpTip": "Connection to be used"
