@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2022, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+  ~
+  ~ This software is the property of WSO2 LLC. and its suppliers, if any.
+  ~ Dissemination of any information or reproduction of any material contained
+  ~ herein is strictly forbidden, unless permitted by WSO2 in accordance with
+  ~ the WSO2 Software License available at: https://wso2.com/licenses/eula/3.2
+  ~ For specific language governing the permissions and limitations under
+  ~ this license, please see the license as well as any agreement you’ve
+  ~ entered into with WSO2 governing the purchase of this software and any
+  ~ associated services.
+  -->
+
+<!-- Generated on 22-Sun, 09, 2024 21:58:29+0530 -->
+
+<template xmlns="http://ws.apache.org/ns/synapse" name="createFrequencyConfiguration">
+    <!-- Request Body Parameter List -->
+    <parameter name="bidLists"
+               description="Bid lists apply frequency settings to ad groups, campaigns, and other entities. Type: array"/>
+    <parameter name="counter"
+               description="Defines the frequency counter framework for tracking the number of times an ad is served. Type: object"/>
+    <sequence>
+        <class name="org.wso2.carbon.theTradeDeskConnector.RestURLBuilder">
+            <property name="operationPath" value="/frequency/config"/>
+        </class>
+        <payloadFactory media-type="json" template-type="freemarker">
+            <format>
+                <![CDATA[{
+                                                                                        <#if (args.arg1)?has_content>
+                                    "BidLists": "${args.arg1}",                                </#if>
+                                                                                            <#if (args.arg2)?has_content>
+                                    "Counter": "${args.arg2}"                                </#if>
+                                                                                        }]]>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:bidLists"/>
+                <arg evaluator="xml" expression="$func:counter"/>
+            </args>
+        </payloadFactory>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <header name="TTD-Auth" expression="get-property('_TTD_AUTH_HEADER_')" scope="transport" action="set"/>
+        <call>
+            <endpoint>
+                <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+-->
+<template name="init" onError="fault" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="connectionName" description="Unique name to identify the connection by."/>
+    <parameter name="base" description="The service root URL."/>
+    <parameter name="authToken" description="The TTD-auth access token."/>
+    <parameter name="username" description="The platform username of the user requesting the token."/>
+    <parameter name="password" description="The platform password of the user requesting the token."/>
+    <parameter name="tokenExpirationInMinutes" description="The token lifetime in minutes."/>
+    <sequence>
+        <property name="uri.var.base" expression="$func:base"/>
+        <property name="uri.var.connection" expression="$func:connectionName"/>
+        <filter source="boolean($func:authToken)" regex="false">
+            <then>
+                <class name="org.wso2.carbon.theTradeDeskConnector.AccessTokenHandler"/>
+            </then>
+            <else>
+                <property name="_TTD_AUTH_HEADER_" expression="$func:authToken"/>
+            </else>
+        </filter>
+    </sequence>
+</template>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+-->
+<connector>
+    <component name="TheTradeDesk" package="org.wso2.carbon.connector">
+        <dependency component="config"/>
+        <dependency component="functions"/>
+        <description>WSO2 Trade Desk Connector Library</description>
+    </component>
+    <icon>icon/icon-small.png</icon>
+</connector>

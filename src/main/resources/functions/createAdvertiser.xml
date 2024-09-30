@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2022, WSO2 LLC. (http://www.wso2.com). All Rights Reserved.
+  ~
+  ~ This software is the property of WSO2 LLC. and its suppliers, if any.
+  ~ Dissemination of any information or reproduction of any material contained
+  ~ herein is strictly forbidden, unless permitted by WSO2 in accordance with
+  ~ the WSO2 Software License available at: https://wso2.com/licenses/eula/3.2
+  ~ For specific language governing the permissions and limitations under
+  ~ this license, please see the license as well as any agreement you’ve
+  ~ entered into with WSO2 governing the purchase of this software and any
+  ~ associated services.
+  -->
+
+<!-- Generated on 22-Sun, 09, 2024 21:58:29+0530 -->
+
+<template xmlns="http://ws.apache.org/ns/synapse" name="createAdvertiser">
+    <!-- Request Body Parameter List -->
+    <parameter name="advertiserName" description="The name of the advertiser. Type: string"/>
+    <parameter name="attributionClickLookbackWindowInSeconds"
+               description="Time window for click attribution in seconds. Type: integer"/>
+    <parameter name="attributionImpressionLookbackWindowInSeconds"
+               description="Time window for impression attribution in seconds. Type: integer"/>
+    <parameter name="clickDedupWindowInSeconds" description="Window for de-duplicating similar clicks. Type: integer"/>
+    <parameter name="conversionDedupWindowInSeconds"
+               description="Window for de-duplicating similar conversions. Type: integer"/>
+    <parameter name="defaultRightMediaOfferTypeId" description="Default Right Media Offer Type ID. Type: integer"/>
+    <parameter name="domainAddress" description="The domain address for the advertiser. Type: string"/>
+    <parameter name="partnerId" description="The ID of the partner who owns this advertiser. Type: string"/>
+    <sequence>
+        <class name="org.wso2.carbon.theTradeDeskConnector.RestURLBuilder">
+            <property name="operationPath" value="/advertiser"/>
+        </class>
+        <payloadFactory media-type="json" template-type="freemarker">
+            <format>
+                <![CDATA[{
+                                                                                        <#if (args.arg1)?has_content>
+                                    "AdvertiserName": "${args.arg1}",                                </#if>
+                                                                                            <#if (args.arg2)?has_content>
+                                    "AttributionClickLookbackWindowInSeconds": ${args.arg2},                                </#if>
+                                                                                            <#if (args.arg3)?has_content>
+                                    "AttributionImpressionLookbackWindowInSeconds": ${args.arg3},                                </#if>
+                                                                                            <#if (args.arg4)?has_content>
+                                    "ClickDedupWindowInSeconds": ${args.arg4},                                </#if>
+                                                                                            <#if (args.arg5)?has_content>
+                                    "ConversionDedupWindowInSeconds": ${args.arg5},                                </#if>
+                                                                                            <#if (args.arg6)?has_content>
+                                    "DefaultRightMediaOfferTypeId": ${args.arg6},                                </#if>
+                                                                                            <#if (args.arg7)?has_content>
+                                    "DomainAddress": "${args.arg7}",                                </#if>
+                                                                                            <#if (args.arg8)?has_content>
+                                    "PartnerId": "${args.arg8}"                                </#if>
+                                                                                        }]]>
+            </format>
+            <args>
+                <arg evaluator="xml" expression="$func:advertiserName"/>
+                <arg evaluator="xml" expression="$func:attributionClickLookbackWindowInSeconds"/>
+                <arg evaluator="xml" expression="$func:attributionImpressionLookbackWindowInSeconds"/>
+                <arg evaluator="xml" expression="$func:clickDedupWindowInSeconds"/>
+                <arg evaluator="xml" expression="$func:conversionDedupWindowInSeconds"/>
+                <arg evaluator="xml" expression="$func:defaultRightMediaOfferTypeId"/>
+                <arg evaluator="xml" expression="$func:domainAddress"/>
+                <arg evaluator="xml" expression="$func:partnerId"/>
+            </args>
+        </payloadFactory>
+        <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        <header name="Accept" value="application/json" scope="transport" action="set"/>
+        <header name="TTD-Auth" expression="get-property('_TTD_AUTH_HEADER_')" scope="transport" action="set"/>
+        <call>
+            <endpoint>
+                <http method="POST" uri-template="{uri.var.base}{+uri.var.urlPath}{+uri.var.urlQuery}"/>
+            </endpoint>
+        </call>
+    </sequence>
+</template>

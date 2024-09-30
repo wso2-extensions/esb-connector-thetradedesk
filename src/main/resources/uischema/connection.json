@@ -1,0 +1,58 @@
+{
+    "connectorName": "TheTradeDesk",
+    "connectionName": "TheTradeDesk",
+    "title": "The Trade Desk Connection",
+    "help": "<h1>The Trade Desk Connection</h1> <b>The Trade Desk Connector allows you to access the REST API of The Trade Desk.</b>",
+    "elements": [
+        {
+            "type": "attribute",
+            "value": {
+                "name": "connectionName",
+                "displayName": "Connection Name",
+                "inputType": "string",
+                "defaultValue": "TTD_CONNECTION",
+                "required": "true",
+                "helpTip": "The name for the Trade desk connection.",
+                "validation": "nameWithoutSpecialCharacters"
+            }
+        },
+        {
+            "type": "attributeGroup",
+            "value": {
+                "groupName": "General",
+                "elements": [
+                    {
+                        "type": "attributeGroup",
+                        "value": {
+                            "groupName": "Basic",
+                            "elements": [
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "base",
+                                        "displayName": "Base URL",
+                                        "inputType": "string",
+                                        "defaultValue": "https://api.thetradedesk.com/v3/",
+                                        "required": "true",
+                                        "helpTip": "The root URL for Trade Desk API."
+                                    }
+                                },
+                                {
+                                    "type": "attribute",
+                                    "value": {
+                                        "name": "authToken",
+                                        "displayName": "Auth Token",
+                                        "inputType": "stringOrExpression",
+                                        "defaultValue": "",
+                                        "required": "true",
+                                        "helpTip": "The access token to authenticate the request."
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
