@@ -1,0 +1,20 @@
+{
+  "name": "The Trade Desk",
+  "owner": "WSO2",
+  "category": "Sales and Marketing",
+  "documentationUrl": "https://mi.docs.wso2.com/en/latest/reference/connectors/the-trade-desk-connector/the-trade-desk-overview/",
+  "description": "The Trade Desk Connector allows you to access The Trade Desk API, enabling you to create, update, and manage programmatic advertising campaigns and ads.",
+  "status": "Inactive",
+  "releases": [
+    {
+      "tagName": "v1.0.0",
+      "products": [
+        "MI 4.3.0"
+      ],
+      "isHidden": false
+    }
+  ],
+  "labels": [
+    "marketing"
+  ]
+}

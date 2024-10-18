@@ -1,0 +1,2096 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "The Trade Desk API",
+        "version": "1.0.2",
+        "description": "This API allows access to The Trade Desk Platform API. Use the sandbox for testing and the production environment for live operations. Authentication is required for all requests. Partial object updates and rate limiting are supported."
+    },
+    "servers": [
+        {
+            "url": "https://api.thetradedesk.com/v3",
+            "description": "Production environment"
+        },
+        {
+            "url": "https://ext-api.sb.thetradedesk.com/v3",
+            "description": "Sandbox environment"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "AdGroupRequest": {
+                "type": "object",
+                "properties": {
+                    "AdGroupName": {
+                        "type": "string",
+                        "description": "The name of the Ad Group.",
+                        "maxLength": 256
+                    },
+                    "CampaignId": {
+                        "type": "string",
+                        "description": "The ID of the Campaign that owns this Ad Group."
+                    },
+                    "BudgetSettings": {
+                        "type": "object",
+                        "description": "Settings for how much and how fast the Ad Group may spend.",
+                        "properties": {
+                            "BudgetInAdvertiserCurrency": {
+                                "type": "number",
+                                "format": "double",
+                                "description": "The total amount the Ad Group may spend in the advertiser's currency."
+                            },
+                            "DailyTargetInAdvertiserCurrency": {
+                                "type": "number",
+                                "format": "double",
+                                "description": "The daily spending limit for the Ad Group."
+                            }
+                        },
+                        "required": [
+                            "BudgetInAdvertiserCurrency"
+                        ]
+                    },
+                    "PacingMode": {
+                        "type": "string",
+                        "description": "The pacing mode for the Ad Group.",
+                        "enum": [
+                            "PaceToEndOfDay",
+                            "Off",
+                            "PaceToEndOfFlight",
+                            "PaceAhead"
+                        ],
+                        "example": "PaceToEndOfDay"
+                    },
+                    "IsEnabled": {
+                        "type": "boolean",
+                        "description": "Whether the Ad Group is enabled to spend.",
+                        "default": false
+                    },
+                    "CreativeIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of Creative IDs associated with this Ad Group."
+                    }
+                },
+                "required": [
+                    "AdGroupName",
+                    "CampaignId",
+                    "BudgetSettings",
+                    "PacingMode"
+                ]
+            },
+            "AdGroupResponse": {
+                "type": "object",
+                "properties": {
+                    "AdGroupId": {
+                        "type": "string",
+                        "description": "The ID of the created Ad Group."
+                    },
+                    "AdGroupName": {
+                        "type": "string",
+                        "description": "The name of the created Ad Group."
+                    },
+                    "CampaignId": {
+                        "type": "string",
+                        "description": "The ID of the Campaign that owns this Ad Group."
+                    }
+                }
+            },
+            "AdvertiserOverviewResponse": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser."
+                    },
+                    "AdvertiserName": {
+                        "type": "string",
+                        "description": "The name of the advertiser."
+                    },
+                    "Campaigns": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "CampaignId": {
+                                    "type": "string",
+                                    "description": "The ID of the campaign."
+                                },
+                                "CampaignName": {
+                                    "type": "string",
+                                    "description": "The name of the campaign."
+                                },
+                                "Description": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "description": "The description of the campaign."
+                                },
+                                "StartDateUTC": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "The date and time (in UTC) that the campaign should start spending."
+                                },
+                                "EndDateUTC": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "nullable": true,
+                                    "description": "The date and time (in UTC) that the campaign should stop spending."
+                                },
+                                "Availability": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Available",
+                                        "Archived"
+                                    ],
+                                    "description": "The availability state of the campaign."
+                                },
+                                "AdGroups": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "AdGroupId": {
+                                                "type": "string",
+                                                "description": "The ID of the ad group."
+                                            },
+                                            "AdGroupName": {
+                                                "type": "string",
+                                                "description": "The name of the ad group."
+                                            },
+                                            "Description": {
+                                                "type": "string",
+                                                "nullable": true,
+                                                "description": "The description of the ad group."
+                                            },
+                                            "IsEnabled": {
+                                                "type": "boolean",
+                                                "description": "Whether the ad group is enabled to spend."
+                                            },
+                                            "Availability": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "Available",
+                                                    "Archived"
+                                                ],
+                                                "description": "The availability state of the ad group."
+                                            },
+                                            "Creatives": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "CreativeId": {
+                                                            "type": "string",
+                                                            "description": "The ID of the creative."
+                                                        },
+                                                        "CreativeName": {
+                                                            "type": "string",
+                                                            "description": "The name of the creative."
+                                                        },
+                                                        "Description": {
+                                                            "type": "string",
+                                                            "nullable": true,
+                                                            "description": "The description of the creative."
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Creatives": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "CreativeId": {
+                                    "type": "string",
+                                    "description": "The ID of the creative."
+                                },
+                                "CreativeName": {
+                                    "type": "string",
+                                    "description": "The name of the creative."
+                                },
+                                "Description": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "description": "The description of the creative."
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "AdvertiserRequest": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserName": {
+                        "type": "string",
+                        "maxLength": 64,
+                        "description": "The name of the advertiser.",
+                        "example": "Sample Advertiser"
+                    },
+                    "AttributionClickLookbackWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Time window for click attribution in seconds.",
+                        "example": 3600
+                    },
+                    "AttributionImpressionLookbackWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Time window for impression attribution in seconds.",
+                        "example": 3600
+                    },
+                    "ClickDedupWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Window for de-duplicating similar clicks.",
+                        "example": 0
+                    },
+                    "ConversionDedupWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Window for de-duplicating similar conversions.",
+                        "example": 0
+                    },
+                    "DefaultRightMediaOfferTypeId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Default Right Media Offer Type ID.",
+                        "example": 12345
+                    },
+                    "DomainAddress": {
+                        "type": "string",
+                        "maxLength": 256,
+                        "description": "The domain address for the advertiser.",
+                        "example": "https://www.advertiser.com"
+                    },
+                    "PartnerId": {
+                        "type": "string",
+                        "description": "The ID of the partner who owns this advertiser.",
+                        "example": "partner_123"
+                    }
+                },
+                "required": [
+                    "AdvertiserName",
+                    "AttributionClickLookbackWindowInSeconds",
+                    "AttributionImpressionLookbackWindowInSeconds",
+                    "ClickDedupWindowInSeconds",
+                    "ConversionDedupWindowInSeconds",
+                    "DefaultRightMediaOfferTypeId",
+                    "DomainAddress",
+                    "PartnerId"
+                ]
+            },
+            "AdvertiserResponse": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the created advertiser.",
+                        "example": "advertiser_12345"
+                    }
+                }
+            },
+            "AdvertiserDetailsResponse": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser.",
+                        "example": "advertiser_12345"
+                    },
+                    "AdvertiserName": {
+                        "type": "string",
+                        "maxLength": 64,
+                        "description": "The name of the advertiser.",
+                        "example": "Sample Advertiser"
+                    },
+                    "AttributionClickLookbackWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Time window for click attribution in seconds.",
+                        "example": 3600
+                    },
+                    "AttributionImpressionLookbackWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Time window for impression attribution in seconds.",
+                        "example": 3600
+                    },
+                    "ClickDedupWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Window for de-duplicating similar clicks.",
+                        "example": 0
+                    },
+                    "ConversionDedupWindowInSeconds": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Window for de-duplicating similar conversions.",
+                        "example": 0
+                    },
+                    "DefaultRightMediaOfferTypeId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Default Right Media Offer Type ID.",
+                        "example": 12345
+                    },
+                    "DomainAddress": {
+                        "type": "string",
+                        "maxLength": 256,
+                        "description": "The domain address for the advertiser.",
+                        "example": "https://www.advertiser.com"
+                    },
+                    "PartnerId": {
+                        "type": "string",
+                        "description": "The ID of the partner who owns this advertiser.",
+                        "example": "partner_123"
+                    }
+                }
+            },
+            "BidListRequest": {
+                "type": "object",
+                "properties": {
+                    "BidLines": {
+                        "type": "array",
+                        "description": "The list of BidLines that will be used along with the ResolutionType to calculate the adjustment for this BidList.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "AdBugPageQualityCategoryId": {
+                                    "type": "string",
+                                    "description": "The ID of the AdBug Page Quality category to target."
+                                },
+                                "AdFormatId": {
+                                    "type": "string",
+                                    "description": "The Ad Format to be used for this bid line adjustment."
+                                },
+                                "BidAdjustment": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "description": "The adjustment to be applied when everything in this BidLine is matched."
+                                },
+                                "DomainFragment": {
+                                    "type": "string",
+                                    "description": "The domain or app ID to match for this adjustment."
+                                }
+                            },
+                            "required": [
+                                "BidAdjustment",
+                                "DomainFragment"
+                            ]
+                        }
+                    },
+                    "ResolutionType": {
+                        "type": "string",
+                        "description": "The ResolutionType determines how BidAdjustments are handled when an impression matches multiple BidLines.",
+                        "enum": [
+                            "ApplyMinimumAdjustment",
+                            "ApplyAverageAdjustment",
+                            "ApplyMaximumAdjustment",
+                            "ApplyMultiplyAdjustment"
+                        ]
+                    },
+                    "BidListAdjustmentType": {
+                        "type": "string",
+                        "description": "Defines how bid adjustments are applied (e.g., BlockList, TargetList, Optimized).",
+                        "enum": [
+                            "BlockList",
+                            "TargetList",
+                            "Optimized"
+                        ]
+                    },
+                    "BidListOwner": {
+                        "type": "string",
+                        "description": "The type of owner that controls this bid list (e.g., AdGroup, Campaign, Advertiser)."
+                    },
+                    "Name": {
+                        "type": "string",
+                        "description": "A name for the bid list."
+                    }
+                },
+                "required": [
+                    "BidLines",
+                    "BidListAdjustmentType",
+                    "Name"
+                ]
+            },
+            "CampaignRequest": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser that owns this campaign.",
+                        "example": "advertiser_12345"
+                    },
+                    "CampaignName": {
+                        "type": "string",
+                        "description": "The name of the campaign.",
+                        "maxLength": 256,
+                        "example": "My New Campaign"
+                    },
+                    "Budget": {
+                        "type": "object",
+                        "properties": {
+                            "Amount": {
+                                "type": "number",
+                                "description": "The maximum amount the campaign may spend.",
+                                "example": 10000.00
+                            },
+                            "CurrencyCode": {
+                                "type": "string",
+                                "description": "The currency of the money value specified in the Amount.",
+                                "example": "USD"
+                            }
+                        }
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The start date and time in UTC when the campaign should begin spending.",
+                        "example": "2024-01-01T00:00:00Z"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The end date and time in UTC when the campaign should stop spending.",
+                        "example": "2024-12-31T23:59:59Z"
+                    },
+                    "PrimaryGoal": {
+                        "type": "object",
+                        "properties": {
+                            "GoalType": {
+                                "type": "string",
+                                "enum": [
+                                    "Awareness",
+                                    "Consideration",
+                                    "Conversion"
+                                ],
+                                "description": "The campaign's primary goal.",
+                                "example": "Conversion"
+                            },
+                            "Amount": {
+                                "type": "number",
+                                "description": "The money amount associated with the primary goal.",
+                                "example": 5.0
+                            },
+                            "CurrencyCode": {
+                                "type": "string",
+                                "description": "The currency code for the primary goal amount.",
+                                "example": "USD"
+                            }
+                        }
+                    },
+                    "TrackingTags": {
+                        "type": "array",
+                        "description": "List of tracking tags associated with the campaign.",
+                        "items": {
+                            "type": "string",
+                            "description": "Tracking tag ID"
+                        }
+                    }
+                },
+                "required": [
+                    "AdvertiserId",
+                    "CampaignName",
+                    "Budget",
+                    "StartDate"
+                ]
+            },
+            "CampaignResponse": {
+                "type": "object",
+                "properties": {
+                    "CampaignId": {
+                        "type": "string",
+                        "description": "The ID of the created campaign.",
+                        "example": "campaign_12345"
+                    },
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser that owns the campaign.",
+                        "example": "advertiser_12345"
+                    },
+                    "CampaignName": {
+                        "type": "string",
+                        "description": "The name of the campaign.",
+                        "example": "My New Campaign"
+                    },
+                    "Budget": {
+                        "type": "object",
+                        "properties": {
+                            "Amount": {
+                                "type": "number",
+                                "description": "The maximum amount the campaign may spend.",
+                                "example": 10000.00
+                            },
+                            "CurrencyCode": {
+                                "type": "string",
+                                "description": "The currency of the money value specified in the Amount.",
+                                "example": "USD"
+                            }
+                        }
+                    },
+                    "StartDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The start date and time in UTC when the campaign should begin spending.",
+                        "example": "2024-01-01T00:00:00Z"
+                    },
+                    "EndDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The end date and time in UTC when the campaign should stop spending.",
+                        "example": "2024-12-31T23:59:59Z"
+                    }
+                }
+            },
+            "CampaignMetricsResponse": {
+                "type": "object",
+                "properties": {
+                    "CampaignFlightId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "ID of the campaign's current flight"
+                    },
+                    "CampaignId": {
+                        "type": "string",
+                        "description": "ID of the campaign"
+                    },
+                    "GoalInfo": {
+                        "type": "object",
+                        "properties": {
+                            "CPAInAdvertiserCurrency": {
+                                "type": "object",
+                                "properties": {
+                                    "Amount": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "description": "The calculated amount of money for the metric"
+                                    },
+                                    "CurrencyCode": {
+                                        "type": "string",
+                                        "description": "The currency code of the amount"
+                                    },
+                                    "Target": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "description": "The target amount for the metric"
+                                    }
+                                }
+                            },
+                            "CPCInAdvertiserCurrency": {
+                                "type": "object",
+                                "properties": {
+                                    "Amount": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "description": "The calculated amount of money for the metric"
+                                    },
+                                    "CurrencyCode": {
+                                        "type": "string",
+                                        "description": "The currency code of the amount"
+                                    },
+                                    "Target": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "description": "The target amount for the metric"
+                                    }
+                                }
+                            },
+                            "CTRInPercent": {
+                                "type": "object",
+                                "properties": {
+                                    "Amount": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "description": "The average click-through rate in percent"
+                                    },
+                                    "Target": {
+                                        "type": "number",
+                                        "format": "double",
+                                        "description": "The target for this goal"
+                                    }
+                                }
+                            },
+                            "Impressions": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Total number of impressions"
+                            },
+                            "LastCalculatedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "The last time the goals were calculated"
+                            }
+                        }
+                    },
+                    "CurrentSpendInAdvertiserCurrency": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "The amount of the budget already spent"
+                    },
+                    "FlightBudgetInAdvertiserCurrency": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "The budget of the active flight"
+                    },
+                    "ProjectedSpendInAdvertiserCurrency": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "Projected spend that was calculated so far"
+                    }
+                }
+            },
+            "CreativeRequest": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser that owns this creative.",
+                        "example": "advertiser_12345"
+                    },
+                    "CreativeName": {
+                        "type": "string",
+                        "description": "The name of the creative. The value must not contain special characters like <>;^\\r\\n. Max length is 256.",
+                        "example": "Sample Creative"
+                    },
+                    "Availability": {
+                        "type": "string",
+                        "description": "Indicates if the Creative is 'Available' for use or 'Archived'. 'Archived' creatives are hidden and associations removed.",
+                        "enum": [
+                            "Available",
+                            "Archived"
+                        ]
+                    },
+                    "Description": {
+                        "type": "string",
+                        "description": "An optional description of the creative. Max length is 512.",
+                        "example": "This is a test creative."
+                    },
+                    "ClickthroughUrl": {
+                        "type": "string",
+                        "description": "The URL to invoke when the user clicks the ad. This may include click tracking. Max length is 5000.",
+                        "example": "https://www.example.com"
+                    }
+                },
+                "required": [
+                    "AdvertiserId",
+                    "CreativeName",
+                    "ClickthroughUrl"
+                ]
+            },
+            "FrequencyConfigRequest": {
+                "type": "object",
+                "properties": {
+                    "BidLists": {
+                        "type": "array",
+                        "description": "Bid lists apply frequency settings to ad groups, campaigns, and other entities.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "BidLines": {
+                                    "type": "array",
+                                    "description": "A list of frequency bid lines that are used to calculate the adjustment.",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "Range": {
+                                                "type": "object",
+                                                "description": "The minimum and maximum number of times an ad can be served within the counter reset interval.",
+                                                "properties": {
+                                                    "Min": {
+                                                        "type": "integer",
+                                                        "format": "int32"
+                                                    },
+                                                    "Max": {
+                                                        "type": "integer",
+                                                        "format": "int32"
+                                                    }
+                                                }
+                                            },
+                                            "BidAdjustment": {
+                                                "type": "number",
+                                                "format": "double"
+                                            }
+                                        },
+                                        "required": [
+                                            "Range",
+                                            "BidAdjustment"
+                                        ]
+                                    }
+                                },
+                                "VolumeControlPriority": {
+                                    "type": "string",
+                                    "description": "The volume control priority applied to the adjustment.",
+                                    "enum": [
+                                        "Neutral",
+                                        "One",
+                                        "Two",
+                                        "FrequencyGoal",
+                                        "Negative"
+                                    ]
+                                },
+                                "AssociatedAdGroups": {
+                                    "type": "array",
+                                    "description": "A list of IDs of ad groups where the bid list is associated and enabled.",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "AssociatedAdvertisers": {
+                                    "type": "array",
+                                    "description": "A list of IDs of advertisers where the bid list is associated and enabled.",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "AssociatedCampaigns": {
+                                    "type": "array",
+                                    "description": "A list of IDs of campaigns where the bid list is associated and enabled.",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "Counter": {
+                        "type": "object",
+                        "description": "Defines the frequency counter framework for tracking the number of times an ad is served.",
+                        "properties": {
+                            "CounterName": {
+                                "type": "string",
+                                "description": "The counter name."
+                            },
+                            "ResetIntervalInMinutes": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "The time interval (in minutes) during which the counter tracks a user's frequency count."
+                            },
+                            "IncrementByAllEntitiesAssociatedWithBidLists": {
+                                "type": "boolean",
+                                "description": "If true, ad groups, campaigns, and advertisers will be used as increments for this configuration."
+                            }
+                        },
+                        "required": [
+                            "CounterName",
+                            "ResetIntervalInMinutes"
+                        ]
+                    }
+                }
+            },
+            "TrackingTagResponse": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser that owns this tracking tag."
+                    },
+                    "ContainerTagBody": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "Additional HTML to be inserted in the IFrame version of the tracking tag. Use this to add additional pixels that will be invoked when this tag is hit."
+                    },
+                    "Currency": {
+                        "type": "string",
+                        "maxLength": 3,
+                        "description": "The units of currency of the Revenue property. Supports any value and is used for conversion reporting."
+                    },
+                    "DataEventTypeId": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID associated with an event, such as AddToCart, Purchase, or ViewItem."
+                    },
+                    "FirstPartyDataId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The first-party data ID for this tracking tag. Used in data groups to target collected data."
+                    },
+                    "HitCount7Day": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Number of hits received in the past 7 days."
+                    },
+                    "HouseholdEnabled": {
+                        "type": "boolean",
+                        "description": "Indicates whether household targeting is enabled for this tracking tag."
+                    },
+                    "IFrameTag": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The IFrame tag."
+                    },
+                    "ImageTag": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The image tag."
+                    },
+                    "OfflineDataProviderId": {
+                        "type": "string",
+                        "maxLength": 32,
+                        "description": "The name of the offline data provider if this is an offline attribution tracking tag."
+                    },
+                    "Revenue": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The amount of revenue a single hit to this tag generates. Can be a macro for dynamic contexts."
+                    },
+                    "TagRedirectUri": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The tag redirect URI."
+                    },
+                    "TrackingTagAvailability": {
+                        "type": "string",
+                        "description": "The availability of the TrackingTag.",
+                        "enum": [
+                            "Available",
+                            "Archived"
+                        ]
+                    },
+                    "TrackingTagCategory": {
+                        "type": "string",
+                        "description": "The category of the TrackingTag.",
+                        "enum": [
+                            "StaticTag",
+                            "AppEventTrackerTag",
+                            "UniversalPixelTag",
+                            "OfflineTag"
+                        ]
+                    },
+                    "TrackingTagId": {
+                        "type": "string",
+                        "description": "The ID of the tracking tag. Ignored on creation; assigned by the system."
+                    },
+                    "TrackingTagLocation": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The location where this tracking tag will be deployed."
+                    },
+                    "TrackingTagName": {
+                        "type": "string",
+                        "maxLength": 256,
+                        "description": "The name of the tracking tag."
+                    },
+                    "TrackingTagType": {
+                        "type": "string",
+                        "description": "The type of the tracking tag.",
+                        "enum": [
+                            "Impression",
+                            "Retargeting",
+                            "Conversion"
+                        ]
+                    },
+                    "UniversalPixelName": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The name of the universal pixel associated with this tracking tag."
+                    }
+                }
+            },
+            "FirstPartyAdvertiserRequest": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser making the query.",
+                        "example": "advertiser_12345"
+                    },
+                    "PageSize": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of results to return per page.",
+                        "example": 100
+                    },
+                    "PageStartIndex": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The index at which to start the page of results.",
+                        "example": 0
+                    },
+                    "DataTypes": {
+                        "type": "array",
+                        "description": "The types of First Party Data to return.",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Keyword",
+                                "TrackingTag",
+                                "IPAddressRange",
+                                "ImportedAdvertiserData",
+                                "ImportedAdvertiserDataWithBaseBid",
+                                "HouseholdExtension",
+                                "ClickRetargeting",
+                                "DirectIPTargeting",
+                                "PlayerEventStart",
+                                "PlayerEventMidpoint",
+                                "PlayerEventComplete",
+                                "ThirdPartyImpression",
+                                "FixedPriceUser",
+                                "CrmData"
+                            ]
+                        }
+                    },
+                    "LookAlikeModelBuildStatuses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "NotRequested",
+                                "Queued",
+                                "Built"
+                            ]
+                        },
+                        "nullable": true
+                    },
+                    "LookAlikeModelEligibilities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Eligible",
+                                "NotEligible"
+                            ]
+                        },
+                        "nullable": true
+                    },
+                    "LookAlikeModelResultStatuses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "NoResults",
+                                "Ready"
+                            ]
+                        },
+                        "nullable": true
+                    },
+                    "SearchTerms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true
+                    },
+                    "SortFields": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "FieldId": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Name",
+                                        "DataType",
+                                        "Uniques"
+                                    ]
+                                },
+                                "Ascending": {
+                                    "type": "boolean",
+                                    "default": true
+                                }
+                            }
+                        },
+                        "nullable": true
+                    },
+                    "UniqueCountMaximum": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "UniqueCountMinimum": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "AdvertiserId",
+                    "PageSize",
+                    "PageStartIndex"
+                ]
+            },
+            "FirstPartyAdvertiserResponse": {
+                "type": "object",
+                "properties": {
+                    "Result": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ActiveHouseholdCount": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "ActiveIDsCount": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "ActiveIDsCountExpanded": {
+                                    "type": "boolean",
+                                    "nullable": true
+                                },
+                                "DataType": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Keyword",
+                                        "TrackingTag",
+                                        "IPAddressRange",
+                                        "ImportedAdvertiserData",
+                                        "ImportedAdvertiserDataWithBaseBid",
+                                        "HouseholdExtension",
+                                        "ClickRetargeting",
+                                        "DirectIPTargeting",
+                                        "PlayerEventStart",
+                                        "PlayerEventMidpoint",
+                                        "PlayerEventComplete",
+                                        "ThirdPartyImpression",
+                                        "FixedPriceUser",
+                                        "CrmData"
+                                    ]
+                                },
+                                "FirstPartyDataId": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                },
+                                "LookAlikeModelDetails": {
+                                    "type": "object",
+                                    "properties": {
+                                        "LastGenerationDateUTC": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "nullable": true
+                                        },
+                                        "LastRequestDateUTC": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "LookAlikeModelBuildStatus": {
+                                            "type": "string",
+                                            "enum": [
+                                                "NotRequested",
+                                                "Queued",
+                                                "Built"
+                                            ]
+                                        },
+                                        "LookAlikeModelResultStatus": {
+                                            "type": "string",
+                                            "enum": [
+                                                "NoResults",
+                                                "Ready"
+                                            ]
+                                        },
+                                        "LookAlikeModelEligibility": {
+                                            "type": "string",
+                                            "enum": [
+                                                "Eligible",
+                                                "NotEligible"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "Name": {
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "ActivePersonsCount": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            }
+                        }
+                    },
+                    "ResultCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "TotalFilteredCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "TotalUnfilteredCount": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "SellerQueryRequest": {
+                "type": "object",
+                "properties": {
+                    "PageSize": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The size of the page requested. If there are fewer items on the current page than the PageSize, only those items will be returned. The minimum value is 25 and the maximum is 100."
+                    },
+                    "PageStartIndex": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The zero-based index at which to start the page of results."
+                    },
+                    "IncludedSellerDomains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true,
+                        "description": "Filter to a seller whose SellerDomain matches the value passed for this property."
+                    },
+                    "SellerNameFilters": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "nullable": true,
+                        "description": "Filter to a seller whose SellerName contains the value passed for this property."
+                    },
+                    "SellerStatusFilter": {
+                        "type": "string",
+                        "enum": [
+                            "Allowed",
+                            "Disallowed"
+                        ],
+                        "description": "Filter to sellers whose SellerStatus matches the value specified. Defaults to Allowed."
+                    },
+                    "SortFields": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "FieldId": {
+                                    "type": "string",
+                                    "enum": [
+                                        "SellerName",
+                                        "SellerDomain"
+                                    ],
+                                    "description": "The field ID by which to sort."
+                                },
+                                "Ascending": {
+                                    "type": "boolean",
+                                    "description": "Whether to sort this field in ascending order (true) or descending order (false). Defaults to true."
+                                }
+                            }
+                        },
+                        "nullable": true,
+                        "description": "Optionally, specify fields to sort the results by."
+                    }
+                },
+                "required": [
+                    "PageSize",
+                    "PageStartIndex"
+                ]
+            },
+            "SellerQueryResponse": {
+                "type": "object",
+                "properties": {
+                    "Result": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "AliasToSellerDomain": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "description": "If this domain is an alias to another seller, the root-level seller domain will be returned here."
+                                },
+                                "IsTargetable": {
+                                    "type": "boolean",
+                                    "description": "Indicates whether this seller can be targeted in bid lines of a bid list."
+                                },
+                                "SellerDomain": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "description": "The domain of the seller."
+                                },
+                                "SellerDomainAliases": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "nullable": true,
+                                    "description": "A list of domains that are listed as aliases for this SellerDomain."
+                                },
+                                "SellerName": {
+                                    "type": "string",
+                                    "nullable": true,
+                                    "description": "The name of the seller."
+                                },
+                                "SellerStatus": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Allowed",
+                                        "Disallowed"
+                                    ],
+                                    "description": "The status indicating whether the seller is allowed to sell on our platform."
+                                }
+                            }
+                        }
+                    },
+                    "ResultCount": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The number of objects returned in the result."
+                    },
+                    "TotalFilteredCount": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The total number of objects available that match the request filters."
+                    },
+                    "TotalUnfilteredCount": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The total number of objects available."
+                    }
+                }
+            },
+            "IPTargetingRange": {
+                "type": "object",
+                "properties": {
+                    "MinIP": {
+                        "type": "string",
+                        "description": "The minimum IP address in the targeting range (inclusive).",
+                        "example": "5.5.5.5"
+                    },
+                    "MaxIP": {
+                        "type": "string",
+                        "description": "The maximum IP address in the targeting range (inclusive).",
+                        "example": "5.6.0.0"
+                    }
+                },
+                "required": [
+                    "MinIP",
+                    "MaxIP"
+                ]
+            },
+            "IPTargetingListRequest": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser that owns this IP Targeting List.",
+                        "example": "advertiser_12345"
+                    },
+                    "IPTargetingDataName": {
+                        "type": "string",
+                        "description": "The name of the Data Element to create for users who are in the associated IP targeting ranges.",
+                        "example": "My New IP Targeting List"
+                    },
+                    "IPTargetingRanges": {
+                        "type": "array",
+                        "description": "All the IP targeting ranges in this list.",
+                        "items": {
+                            "$ref": "#/components/schemas/IPTargetingRange"
+                        }
+                    }
+                },
+                "required": [
+                    "AdvertiserId",
+                    "IPTargetingDataName",
+                    "IPTargetingRanges"
+                ]
+            },
+            "IPTargetingListResponse": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser that owns this IP Targeting List.",
+                        "example": "advertiser_12345"
+                    },
+                    "IPTargetingDataName": {
+                        "type": "string",
+                        "description": "The name of the Data Element to create for users who are in the associated IP targeting ranges.",
+                        "example": "My New IP Targeting List"
+                    },
+                    "IPTargetingListId": {
+                        "type": "string",
+                        "description": "The ID of this IP Targeting List.",
+                        "example": "ip_targeting_list_123"
+                    },
+                    "IPTargetingRangesCount": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The total number of IP targeting ranges currently used by the IP Targeting List.",
+                        "example": 5
+                    }
+                }
+            },
+            "ReportScheduleResponse": {
+                "type": "object",
+                "properties": {
+                    "ReportScheduleId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "The ID of the Report Schedule.",
+                        "example": 12345
+                    },
+                    "ReportScheduleName": {
+                        "type": "string",
+                        "maxLength": 256,
+                        "description": "The name of the Report Schedule.",
+                        "example": "My Weekly Performance Report"
+                    },
+                    "AdvertiserFilters": {
+                        "type": "array",
+                        "description": "The list of advertisers on which to filter the report.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "CampaignFilters": {
+                        "type": "array",
+                        "description": "The list of campaigns on which to filter the report.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "AdGroupFilters": {
+                        "type": "array",
+                        "description": "The list of ad groups on which to filter the report.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "PartnerFilters": {
+                        "type": "array",
+                        "description": "The list of partners on which to filter the report.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "ReportDateRange": {
+                        "type": "string",
+                        "enum": [
+                            "LastXDays",
+                            "Custom",
+                            "Yesterday",
+                            "Last7Days",
+                            "Last14Days",
+                            "Last30Days",
+                            "MonthToDate",
+                            "QuarterToDate",
+                            "YearToDate",
+                            "LastMonth",
+                            "LastQuarter",
+                            "Last3Months",
+                            "CampaignToDate"
+                        ],
+                        "description": "The date range for the report schedule.",
+                        "example": "Last7Days"
+                    },
+                    "ReportStartDateInclusive": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "description": "The start of the date range for the report."
+                    },
+                    "ReportEndDateExclusive": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "description": "The end of the date range for the report (exclusive)."
+                    },
+                    "ReportFrequency": {
+                        "type": "string",
+                        "enum": [
+                            "Once",
+                            "Daily",
+                            "Weekly",
+                            "Monthly",
+                            "Quarterly"
+                        ],
+                        "description": "The frequency of the report schedule.",
+                        "example": "Weekly"
+                    },
+                    "ReportFileFormat": {
+                        "type": "string",
+                        "enum": [
+                            "TSV",
+                            "CSV",
+                            "ExcelPivot"
+                        ],
+                        "description": "The file format for the report.",
+                        "example": "CSV"
+                    },
+                    "EmailAddresses": {
+                        "type": "array",
+                        "description": "The list of email addresses that will receive the report.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "TimeZone": {
+                        "type": "string",
+                        "description": "The Olson timezone of the Report Schedule.",
+                        "example": "UTC"
+                    },
+                    "IsCompleted": {
+                        "type": "boolean",
+                        "description": "Indicates whether the report schedule has completed."
+                    },
+                    "CreationDateUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The UTC creation date of the Report Schedule."
+                    }
+                }
+            },
+            "UniversalForecastingRequest": {
+                "type": "object",
+                "properties": {
+                    "AdvertiserId": {
+                        "type": "string",
+                        "description": "The platform ID of the advertiser requesting the forecast.",
+                        "example": "advertiser_12345"
+                    },
+                    "AudienceId": {
+                        "type": "string",
+                        "nullable": true,
+                        "description": "The ID for the audience to be used in the forecast."
+                    },
+                    "AverageBidCPMInAdvertiserCurrency": {
+                        "type": "number",
+                        "format": "double",
+                        "description": "The average bid in the advertiser's currency to be used for the forecast."
+                    },
+                    "Demographic": {
+                        "type": "object",
+                        "nullable": true,
+                        "properties": {
+                            "StartAge": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The minimum age to be targeted."
+                            },
+                            "EndAge": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The maximum age to be targeted."
+                            },
+                            "Gender": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "The gender to be targeted."
+                            }
+                        }
+                    },
+                    "ExistingBidLists": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "nullable": true,
+                        "description": "Existing bid lists to be applied to the forecast."
+                    },
+                    "ForecastingAudiences": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "AdvertiserId": {
+                                    "type": "string",
+                                    "description": "The platform ID of the advertiser that owns this Audience."
+                                },
+                                "AudienceName": {
+                                    "type": "string",
+                                    "maxLength": 64,
+                                    "description": "The name of the audience."
+                                },
+                                "IncludedDataGroups": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "AdvertiserId": {
+                                                "type": "string"
+                                            },
+                                            "DataGroupName": {
+                                                "type": "string",
+                                                "maxLength": 64
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "GenerateBudgetPoints": {
+                        "type": "boolean",
+                        "description": "Set to true to generate budget points for impressions and reach."
+                    },
+                    "TimeWindow": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "The number of days (1 to 180) for the forecast."
+                    },
+                    "UniversalForecastingBidLists": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "BidLines": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "AdBugPageQualityCategoryId": {
+                                                "type": "string"
+                                            },
+                                            "AdFormatId": {
+                                                "type": "string"
+                                            },
+                                            "BidAdjustment": {
+                                                "type": "number",
+                                                "format": "double"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "nullable": true,
+                        "description": "New bid lists to be applied to the forecast."
+                    }
+                },
+                "required": [
+                    "AdvertiserId",
+                    "GenerateBudgetPoints"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "TTDAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "TTD-Auth",
+                "description": "Place the generated API token in the 'TTD-Auth' header."
+            }
+        }
+    },
+    "paths": {
+        "/advertiser": {
+            "post": {
+                "operationId": "createAdvertiser",
+                "summary": "Create a new advertiser",
+                "description": "Create a new advertiser entity with the necessary details for attribution and domain address.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdvertiserRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Advertiser created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdvertiserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid or missing parameters."
+                    }
+                }
+            }
+        },
+        "/advertiser/{advertiserId}": {
+            "get": {
+                "operationId": "getAdvertiserById",
+                "summary": "Retrieve an advertiser by ID",
+                "description": "Get details of an existing advertiser using the advertiser's platform ID.",
+                "parameters": [
+                    {
+                        "name": "advertiserId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The platform ID of the advertiser to retrieve."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Advertiser details retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdvertiserDetailsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid or missing advertiser ID."
+                    },
+                    "404": {
+                        "description": "Advertiser not found."
+                    }
+                }
+            }
+        },
+        "/adgroup": {
+            "post": {
+                "operationId": "createAdGroup",
+                "summary": "Create a new Ad Group",
+                "description": "This endpoint allows you to create a new Ad Group within a campaign.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdGroupRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ad Group created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdGroupResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid or missing parameters."
+                    }
+                }
+            }
+        },
+        "/creative": {
+            "post": {
+                "operationId": "createCreative",
+                "summary": "Create a new creative",
+                "description": "Create a new creative under an advertiser.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreativeRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Creative created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreativeRequest"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request, invalid or missing parameters."
+                    }
+                }
+            }
+        },
+        "/bidlist": {
+            "post": {
+                "operationId": "createBidList",
+                "summary": "Create a bid list",
+                "description": "Create a bid list, returning the created bid list.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BidListRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Bid list created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BidListRequest"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters."
+                    }
+                }
+            }
+        },
+        "/campaign": {
+            "post": {
+                "operationId": "createCampaign",
+                "summary": "Create a new campaign",
+                "description": "Create a new campaign entity with the necessary details such as name, budget, and start date.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CampaignRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Campaign created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CampaignResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, missing or incorrect parameters."
+                    }
+                }
+            }
+        },
+        "/campaign/{campaignId}/metrics": {
+            "get": {
+                "operationId": "getCampaignMetrics",
+                "summary": "Get metrics for an existing campaign",
+                "description": "Retrieve the performance metrics for a campaign, including spend, impressions, and other key metrics.",
+                "parameters": [
+                    {
+                        "name": "campaignId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the campaign to retrieve metrics for"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Metrics retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CampaignMetricsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters"
+                    },
+                    "404": {
+                        "description": "Campaign not found"
+                    }
+                }
+            }
+        },
+        "/dmp/firstparty/advertiser": {
+            "post": {
+                "operationId": "getFirstPartyDataForAdvertisers",
+                "summary": "Get First Party Data for Advertisers",
+                "description": "Retrieve the First Party Data matching the provided query for an advertiser.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FirstPartyAdvertiserRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "First Party Data retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FirstPartyAdvertiserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters."
+                    }
+                }
+            }
+        },
+        "/frequency/config": {
+            "post": {
+                "operationId": "createFrequencyConfiguration",
+                "summary": "Create a frequency configuration",
+                "description": "Creates a frequency configuration, associating entities to increment the counter and applying the frequency configuration to bid lists.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FrequencyConfigRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Frequency configuration created successfully."
+                    },
+                    "400": {
+                        "description": "Invalid or missing parameters."
+                    }
+                }
+            }
+        },
+        "/trackingtag/{trackingTagId}": {
+            "get": {
+                "operationId": "getTrackingTagById",
+                "summary": "Get a tracking tag",
+                "description": "Retrieve a tracking tag by its ID.",
+                "parameters": [
+                    {
+                        "name": "trackingTagId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the tracking tag to retrieve."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tracking tag retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TrackingTagResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid or missing parameters."
+                    },
+                    "404": {
+                        "description": "Tracking tag not found."
+                    }
+                }
+            }
+        },
+        "/seller/query": {
+            "post": {
+                "operationId": "querySellers",
+                "summary": "Retrieve a paged, filterable list of sellers",
+                "description": "Retrieve a paged, filterable list of sellers, seller domains, and whether they can be targeted as a SellerDomain in a bid list. Only returns sellers that have spent through our platform.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SellerQueryRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "List of sellers retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SellerQueryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters."
+                    }
+                }
+            }
+        },
+        "/iptargetinglist": {
+            "post": {
+                "operationId": "createIpTargetingList",
+                "summary": "Create a new IP Targeting List",
+                "description": "Create a new IP Targeting List for an advertiser. Each Advertiser has a quota for the number of IP targeting ranges they may include across all of their IP Targeting Lists.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IPTargetingListRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "IP Targeting List created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IPTargetingListResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request, such as exceeding the advertiser's quota for IP targeting ranges."
+                    }
+                }
+            }
+        },
+        "/myreports/reportschedule/{scheduleId}": {
+            "get": {
+                "operationId": "getReportScheduleById",
+                "summary": "Get a report schedule",
+                "description": "Retrieve details of a report schedule by its ID.",
+                "parameters": [
+                    {
+                        "name": "scheduleId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "description": "The ID of the report schedule to retrieve."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Report schedule retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReportScheduleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters."
+                    }
+                }
+            }
+        },
+        "/overview/advertiser/{advertiserId}": {
+            "get": {
+                "operationId": "getAdvertiserOverview",
+                "summary": "Get an advertiser overview",
+                "description": "Retrieve an overview of an advertiser, including descendant relationships for campaigns, ad groups, and creatives.",
+                "parameters": [
+                    {
+                        "name": "advertiserId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The platform ID of the advertiser."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Advertiser overview retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdvertiserOverviewResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters."
+                    }
+                }
+            }
+        },
+        "/universalforecasting/generate": {
+            "post": {
+                "operationId": "generateForecast",
+                "summary": "Generate a forecast",
+                "description": "Generate a forecast based on the data available at the time of the request.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UniversalForecastingRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Forecast generated successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "MetricResults": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "InsightMetricType": {
+                                                        "type": "string",
+                                                        "description": "The type of metric insight.",
+                                                        "enum": [
+                                                            "Impressions",
+                                                            "Spend",
+                                                            "Frequency",
+                                                            "Reach"
+                                                        ]
+                                                    },
+                                                    "RangeStart": {
+                                                        "type": "number",
+                                                        "format": "double"
+                                                    },
+                                                    "RangeEnd": {
+                                                        "type": "number",
+                                                        "format": "double"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request or missing parameters."
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "TTDAuth": []
+        }
+    ]
+}
